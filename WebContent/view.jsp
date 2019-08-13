@@ -1,4 +1,36 @@
-<!DOCTYPE html>
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
+    pageEncoding="ISO-8859-1"%>
+    
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+
+<%@page import="java.sql.DriverManager" %>
+<%@page import="java.sql.ResultSet" %>
+<%@page import="java.sql.Statement" %>
+<%@page import="java.sql.Connection" %>
+
+<%
+	String id = request.getParameter("mobileno");
+	String driverName = "com.mysql.jdbc.Driver";
+	String ConnectionUrl = "jdbc:mysql://localhost:3306/";
+	String dbName = "customer";
+	String UserId="root";
+	String password = "bawwa";
+	
+	try{
+		Class.forName(driverName);
+		}catch(ClassNotFoundException e){
+			e.printStackTrace();
+		}
+	
+	Connection connection = null;
+	Statement statement = null;
+	ResultSet resultset = null;
+
+%>
+
+
+
 <html>
 	<head>
 		<meta charset="utf-8">
@@ -141,44 +173,60 @@
 						</div>
 					  </nav>
 					  <nav class="navbar navbar-light bg-light">
-							<form class="form-inline">
-							  <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+							<form class="form-inline" action="SearchResultsCustomer.jsp">
+							  <input class="form-control mr-sm-2" type="search" name="search" placeholder="Search Number" aria-label="Search">
 							  <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
 							</form>
 						  </nav>
+						  <div class="ex1">
 					  <div class="addform" >
-							<table class="table table-dark">
+							 <table class="table table-dark">
 									<thead>
 									  <tr>
 										<th scope="col">ID</th>
 										<th scope="col">Name</th>
 										<th scope="col">Type</th>
 										<th scope="col">Telephone No</th>
+										<th scope="col">Email</th>
 									  </tr>
-									</thead>
-									<tbody>
-									  <tr>
-										<th scope="row">1</th>
-										<td>Mark</td>
-										<td>Otto</td>
-										<td>@mdo</td>
-									  </tr>
-									  <tr>
-										<th scope="row">2</th>
-										<td>Jacob</td>
-										<td>Thornton</td>
-										<td>@fat</td>
-									  </tr>
-									  <tr>
-										<th scope="row">3</th>
-										<td>Larry</td>
-										<td>the Bird</td>
-										<td>@twitter</td>
-									  </tr>
-									</tbody>
+									  
+									
+										<%
+											try{
+												connection = DriverManager.getConnection(ConnectionUrl+dbName,UserId,password);
+												statement=connection.createStatement();
+												String sql ="SELECT * from customerdetails";
+												
+												resultset = statement.executeQuery(sql);
+												while(resultset.next()){
+													
+												
+											
+										
+									%>
+									<tr>
+									<td><%=resultset.getInt("id") %></td>
+									<td><%=resultset.getString("cname") %></td>
+									<td><%=resultset.getString("ctype") %></td>
+									<td><%=resultset.getInt("mobileNo") %></td>
+									<td><%=resultset.getString("email") %></td>
+									
+									</tr>
+									<%
+												}
+											connection.close();	
+											} catch(Exception e){
+												e.printStackTrace();
+											}
+											
+									%>
+									
+									
 								  </table>
 
 					  </div>
+					  </div>
+					 
 			
 		</div>
 	</body>

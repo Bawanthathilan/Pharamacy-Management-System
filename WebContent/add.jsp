@@ -14,6 +14,7 @@
 		<script src="https://code.jquery.com/jquery-2.2.0.min.js"></script>
 		<script src="https://code.highcharts.com/highcharts.js"></script>
 		<script src="https://code.highcharts.com/modules/data.js"></script>
+		<script src="https://cdn.jsdelivr.net/npm/sweetalert2@8"></script>
 		<script src="main.js"></script>
 
 		<style>
@@ -145,42 +146,42 @@
 					  <!--add form-->
 					  
 					  <div class="addform" >
-							<form class="form-horizontal" action="./InsertCustomer" method="post">
+							<form class="form-horizontal" action="./SaveServlet" method="post">
 								<div class="form-group">
 								  <label class="control-label col-sm-2" for="email">Customer ID :</label>
 								  <div class="col-sm-10">
-									<input type="text" class="form-control" id="id" >
+									<input type="text" name ="id" class="form-control" id="id" >
 								  </div>
 								</div>
 								<div class="form-group">
 								  <label class="control-label col-sm-2" for="pwd">Customer Name:</label>
 								  <div class="col-sm-10">
-									<input type="text" class="form-control" id="name">
+									<input type="text" name = "cname" class="form-control" id="name">
 								  </div>
 								</div>
 								<div class="form-group col-md-4">
 										<label for="inputState">Customer Type:</label>
-										<select id="inputState" class="form-control">
-										  <option selected>Choose...</option>
-										  <option>Regular</option>
+										<select id="inputState" class="form-control" name="ctype">
+										  <option selected>Regular</option>
+						
 										  <option>Bulk</option>
 										</select>
 									  </div>
 								<div class="form-group">
 										<label class="control-label col-sm-2" for="pwd">Telephone No:</label>
 										<div class="col-sm-10">
-										  <input type="text" class="form-control" id="tp">
+										  <input type="text" name="tp" class="form-control" id="tp">
 										</div>
 									  </div>
 									  <div class="form-group">
 											<label class="control-label col-sm-2" for="pwd">Email:</label>
 											<div class="col-sm-10">
-											  <input type="text" class="form-control" id="email">
+											  <input type="text" name="email" class="form-control" id="email">
 											</div>
 										  </div>
 							
 								<div class="form-group">
-										<button type="submit" class="btn btn-primary">Submit</button>
+										<button type="submit"  class="btn btn-primary">Submit</button>
 								</div>
 								
 							  </form> 

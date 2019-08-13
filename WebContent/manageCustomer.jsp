@@ -1,4 +1,22 @@
-<!DOCTYPE html>
+<%@page import="java.sql.DriverManager"%>
+<%@page import="java.sql.ResultSet"%>
+<%@page import="java.sql.Statement"%>
+<%@page import="java.sql.Connection"%>
+<%
+String driver = "com.mysql.jdbc.Driver";
+String connectionUrl = "jdbc:mysql://localhost:3306/";
+String database = "customer";
+String userid = "root";
+String password = "bawwa";
+try {
+Class.forName(driver);
+} catch (ClassNotFoundException e) {
+e.printStackTrace();
+}
+Connection connection = null;
+Statement statement = null;
+ResultSet resultSet = null;
+%>
 <html>
 	<head>
 		<meta charset="utf-8">
@@ -14,7 +32,7 @@
 		<link rel="stylesheet" href="http://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
 		<link rel="stylesheet" href="./style/main.css">
 
-
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 		<script src="https://code.jquery.com/jquery-2.2.0.min.js"></script>
 		<script src="https://kit.fontawesome.com/b7e89b71b3.js"></script>
 		<script src="https://code.highcharts.com/highcharts.js"></script>
@@ -156,79 +174,47 @@
 								 <thead>
 								 
 								 
-								 <th>First Name</th>
-								  <th>Last Name</th>
-								   <th>Address</th>
+								 <th>ID</th>
+								  <th>Name</th>
+								   <th>Type</th>
+								   <th>Mobile No</th>
 								   <th>Email</th>
-								   <th>Contact</th>
 									<th>Edit</th>
 									
 									 <th>Delete</th>
 								 </thead>
+								 <%
+try{
+connection = DriverManager.getConnection(connectionUrl+database, userid, password);
+statement=connection.createStatement();
+String sql ="select * from customerdetails";
+resultSet = statement.executeQuery(sql);
+int i=0;
+while(resultSet.next()){
+%>
 				  <tbody>
 				  
 				  <tr>
 				  
-				  <td>Mohsin</td>
-				  <td>Irshad</td>
-				  <td>CB 106/107 Street # 11 Wah Cantt Islamabad Pakistan</td>
-				  <td>isometric.mohsin@gmail.com</td>
-				  <td>+923335586757</td>
+				  <td><%=resultSet.getInt("id") %></td>
+				  <td><%=resultSet.getString("cname") %></td>
+				  <td><%=resultSet.getString("ctype") %></td>
+				  <td><%=resultSet.getInt("mobileno") %></td>
+				  <td><%=resultSet.getString("email") %></td>
 				  <td><p data-placement="top" data-toggle="tooltip" title="Edit"><button class="btn btn-primary btn-xs" data-title="Edit" data-toggle="modal" data-target="#edit" ><span class="fas fa-pencil-alt"></span></button></p></td>
-				  <td><p data-placement="top" data-toggle="tooltip" title="Delete"><button class="btn btn-danger btn-xs" data-title="Delete" data-toggle="modal" data-target="#delete" ><span class="fas fa-trash-alt"></span></button></p></td>
+				  <form action ="Remove">
+				  <td><a href="RemoveCustomer.jsp?id=<%=resultSet.getString("id") %>"><p data-placement="top" data-toggle="tooltip" title="Delete"><button class="btn btn-danger btn-xs" data-title="Delete" data-toggle="modal" data-target="#delete" ><span class="fas fa-trash-alt"></span></button></p></a></td>
+				  </form>
 				  </tr>
-				  
-			   <tr>
-				  
-				  <td>Mohsin</td>
-				  <td>Irshad</td>
-				  <td>CB 106/107 Street # 11 Wah Cantt Islamabad Pakistan</td>
-				  <td>isometric.mohsin@gmail.com</td>
-				  <td>+923335586757</td>
-				  <td><p data-placement="top" data-toggle="tooltip" title="Edit"><button class="btn btn-primary btn-xs" data-title="Edit" data-toggle="modal" data-target="#edit" ><span class="fas fa-pencil-alt"></span></button></p></td>
-				  <td><p data-placement="top" data-toggle="tooltip" title="Delete"><button class="btn btn-danger btn-xs" data-title="Delete" data-toggle="modal" data-target="#delete" ><span class="fas fa-trash-alt"></span></button></p></td>
-				  </tr>
-				  
-				  
-			   <tr>
-				 
-				  <td>Mohsin</td>
-				  <td>Irshad</td>
-				  <td>CB 106/107 Street # 11 Wah Cantt Islamabad Pakistan</td>
-				  <td>isometric.mohsin@gmail.com</td>
-				  <td>+923335586757</td>
-				  <td><p data-placement="top" data-toggle="tooltip" title="Edit"><button class="btn btn-primary btn-xs" data-title="Edit" data-toggle="modal" data-target="#edit" ><span class="fas fa-pencil-alt"></span></button></p></td>
-				  <td><p data-placement="top" data-toggle="tooltip" title="Delete"><button class="btn btn-danger btn-xs" data-title="Delete" data-toggle="modal" data-target="#delete" ><span class="fas fa-trash-alt"></span></button></p></td>
-				  </tr>
-				  
-				  
-				  
-			   <tr>
-				  
-				  <td>Mohsin</td>
-				  <td>Irshad</td>
-				  <td>CB 106/107 Street # 11 Wah Cantt Islamabad Pakistan</td>
-				  <td>isometric.mohsin@gmail.com</td>
-				  <td>+923335586757</td>
-				  <td><p data-placement="top" data-toggle="tooltip" title="Edit"><button class="btn btn-primary btn-xs" data-title="Edit" data-toggle="modal" data-target="#edit" ><span class="fas fa-pencil-alt"></span></button></p></td>
-				  <td><p data-placement="top" data-toggle="tooltip" title="Delete"><button class="btn btn-danger btn-xs" data-title="Delete" data-toggle="modal" data-target="#delete" ><span class="fas fa-trash-alt"></span></button></p></td>
-				  </tr>
-				  
-				  
-			   <tr>
-				  
-				  <td>Mohsin</td>
-				  <td>Irshad</td>
-				  <td>CB 106/107 Street # 11 Wah Cantt Islamabad Pakistan</td>
-				  <td>isometric.mohsin@gmail.com</td>
-				  <td>+923335586757</td>
-				  <td><p data-placement="top" data-toggle="tooltip" title="Edit"><button class="btn btn-primary btn-xs" data-title="Edit" data-toggle="modal" data-target="#edit" ><span class="fas fa-pencil-alt"></span></button></p></td>
-				  <td><p data-placement="top" data-toggle="tooltip" title="Delete"><button class="btn btn-danger btn-xs" data-title="Delete" data-toggle="modal" data-target="#delete" ><span class="fas fa-trash-alt"></span></button></p></td>
-				  </tr>
-				  
-				 
-				  
-				 
+				  <%
+i++;
+}
+connection.close();
+} catch (Exception e) {
+e.printStackTrace();
+}
+%>
+			   				 				 		
 				  
 				  </tbody>
 					  
