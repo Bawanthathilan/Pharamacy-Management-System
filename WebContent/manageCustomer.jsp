@@ -166,7 +166,7 @@ ResultSet resultSet = null;
 
 					  <br>
 					  
-					  <div class="">
+					  <div class="ex1">
 			  
 							
 							<table id="mytable" class="table table-bordred table-striped">
@@ -202,10 +202,11 @@ while(resultSet.next()){
 				  <td><%=resultSet.getInt("mobileno") %></td>
 				  <td><%=resultSet.getString("email") %></td>
 				  <td><p data-placement="top" data-toggle="tooltip" title="Edit"><button class="btn btn-primary btn-xs" data-title="Edit" data-toggle="modal" data-target="#edit" ><span class="fas fa-pencil-alt"></span></button></p></td>
-				  <form action ="Remove">
-				  <td><a href="RemoveCustomer.jsp?id=<%=resultSet.getString("id") %>"><p data-placement="top" data-toggle="tooltip" title="Delete"><button class="btn btn-danger btn-xs" data-title="Delete" data-toggle="modal" data-target="#delete" ><span class="fas fa-trash-alt"></span></button></p></a></td>
-				  </form>
+				 
+				  <td><a href="DeleteCustomer.jsp?id=<%=resultSet.getString("id") %>"><button class="btn btn-danger btn-xs" data-title="Delete" data-toggle="modal" data-target="#delete" ><span class="fas fa-trash-alt"></span></button></p></a></td>
+				  
 				  </tr>
+				  
 				  <%
 i++;
 }

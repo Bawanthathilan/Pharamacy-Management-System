@@ -181,8 +181,9 @@
 										  </div>
 							
 								<div class="form-group">
-										<button type="submit"  class="btn btn-primary">Submit</button>
+										<button type="submit" data-toggle="modal" data-target="#exampleModal" class="btn btn-primary">Submit</button>
 								</div>
+								
 								
 							  </form> 
 					  </div>
