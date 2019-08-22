@@ -1,4 +1,26 @@
-<!DOCTYPE html>
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
+    pageEncoding="ISO-8859-1"%>
+    
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+
+<%@page import="java.sql.DriverManager" %>
+<%@page import="java.sql.ResultSet" %>
+<%@page import="java.sql.Statement" %>
+<%@page import="java.sql.Connection" %>
+<%
+try
+{
+Class.forName("com.mysql.jdbc.Driver").newInstance();
+Connection con=DriverManager.getConnection("jdbc:mysql://localhost:3306/customer","root","bawwa");
+Statement st=con.createStatement();
+String strQuery = "SELECT COUNT(*) FROM customerdetails";
+ResultSet rs = st.executeQuery(strQuery);
+String Countrow="";
+while(rs.next()){
+
+%>
+
 <html>
 	<head>
 		<meta charset="utf-8">
@@ -14,6 +36,7 @@
 		<script src="https://code.jquery.com/jquery-2.2.0.min.js"></script>
 		<script src="https://code.highcharts.com/highcharts.js"></script>
 		<script src="https://code.highcharts.com/modules/data.js"></script>
+		<script src="https://cdn.jsdelivr.net/npm/sweetalert2@8"></script>
 		<script src="main.js"></script>
 
 		<style>
@@ -61,14 +84,14 @@
 			</div>
 			<nav>
 				<ul>
-				<li>
+					<li class="active">
 						<a href="dashboard.jsp">
 							<span></span>
 							<span>Dashboard </span>
 						</a>
 					</li>
-					<li class="active">
-						<a href="#">
+					<li >
+						<a href="add.jsp">
 							<span></span>
 							<span>Customer </span>
 						</a>
@@ -120,68 +143,30 @@
 			</nav>
 		</div>
 		<div class="main-content">
-
+		
 			<!--Nav bar-->
-				<nav class="navbar navbar-expand-lg navbar-dark bg-primary">
-						
-						<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-						  <span class="navbar-toggler-icon"></span>
-						</button>
-						<div class="collapse navbar-collapse" id="navbarNav">
-						  <ul class="navbar-nav">
-							<li class="nav-item ">
-							  <a class="nav-link" href="add.jsp">Add Customer <span class="sr-only">(current)</span></a>
-							</li>
-							<li class="nav-item">
-							  <a class="nav-link" href="view.jsp">View Customer</a>
-							</li>
-							<li class="nav-item">
-							  <a class="nav-link" href="manageCustomer.jsp">Manage Customer</a>
-							</li>
-							<li class="nav-item active">
-							  <a class="nav-link disabled" href="reports.jsp">Reports</a>
-							</li>
-							
-						  </ul>
-						  
-						</div>
-					  </nav>
+				<Br>
 					  <!--Nav bar end-->
-					  
-
-							<div class="addform" >
-									<form class="form-horizontal" action="#">
-										<div class="form-group">
-										  <label class="control-label col-sm-2" for="email">Report name :</label>
-										  <div class="col-sm-10">
-											<input type="text" class="form-control" id="email" >
-										  </div>
-										</div>
-										<div class="form-group">
-										  <label class="control-label col-sm-2" for="pwd">Report <Title></Title>:</label>
-										  <div class="col-sm-10">
-											<input type="text" class="form-control" id="pwd">
-										  </div>
-										</div>
-										<div class="form-group col-md-4">
-												<label for="inputState">Report Source:</label>
-												<select id="inputState" class="form-control">
-												  <option selected>Choose...</option>
-												  <option>Monthly</option>
-												  <option>Annual</option>
-												</select>
-											  </div>
-										
-									
-										<div class="form-group">
-												<button type="submit" class="btn btn-primary">Download</button>
-										</div>
-										
-									  </form> 
-							  
-					  </div>
-					  
-			
+					  <div style="padding-left:12px;">
+					<div class="card text-white bg-primary mb-3" style="max-width: 18rem; ">
+ 					 
+  					<div class="card-body">
+    				<h5 class="card-title"><span class="fa fa-user" aria-hidden="true"></span>&nbsp Customer Count</h5>
+    				<%   
+					Countrow = rs.getString(1);
+//out.println("Total Row :" +Countrow);
+}%>
+   					 <h1 class="card-title"> <% out.println("Total :" +Countrow); %></h1>
+  					</div>
+					</div>
+					</div>
+					  <!--add form-->
+<%					
+}
+catch (Exception e){
+e.printStackTrace();
+}  
+%>	
 		</div>
 	</body>
 </html>
