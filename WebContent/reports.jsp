@@ -174,7 +174,7 @@
 										
 									
 										<div class="form-group">
-												<button type="submit" class="btn btn-primary">Download</button>
+												<button type="submit" class="btn btn-primary"><a href="pdfGenCustomer.jsp" style="color: white;">Download</a></button>
 										</div>
 										
 									  </form> 

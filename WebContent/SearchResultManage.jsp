@@ -1,4 +1,10 @@
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
+    pageEncoding="ISO-8859-1"%>
+    
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@page import="java.sql.DriverManager"%>
+<%@page import="java.sql.DriverManager" %>
 <%@page import="java.sql.ResultSet"%>
 <%@page import="java.sql.Statement"%>
 <%@page import="java.sql.Connection"%>
@@ -8,6 +14,7 @@ String connectionUrl = "jdbc:mysql://localhost:3306/";
 String database = "customer";
 String userid = "root";
 String password = "bawwa";
+String search=request.getParameter("search");
 try {
 Class.forName(driver);
 } catch (ClassNotFoundException e) {
@@ -23,22 +30,15 @@ ResultSet resultSet = null;
 	    <meta http-equiv="X-UA-Compatible" content="IE=edge">
     	<meta name="viewport" content="width=device-width, initial-scale=1">
 		<title>Responsive vertical menu navigation</title>
-		<!--  <link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
-		<script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
-		<script src="//code.jquery.com/jquery-1.11.1.min.js"></script>-->
 		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
 		<link href='https://fonts.googleapis.com/css?family=Source+Sans+Pro:700, 600,500,400,300' rel='stylesheet' type='text/css'>
 		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
 		<link rel="stylesheet" href="http://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
 		<link rel="stylesheet" href="./style/main.css">
-
-		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-		<script src="https://code.jquery.com/jquery-2.2.0.min.js"></script>
 		<script src="https://kit.fontawesome.com/b7e89b71b3.js"></script>
+		<script src="https://code.jquery.com/jquery-2.2.0.min.js"></script>
 		<script src="https://code.highcharts.com/highcharts.js"></script>
 		<script src="https://code.highcharts.com/modules/data.js"></script>
-		<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
-<script src="http://getbootstrap.com/dist/js/bootstrap.min.js"></script>
 		<script src="main.js"></script>
 
 		<style>
@@ -82,7 +82,7 @@ ResultSet resultSet = null;
 		<div class="side-nav">
 			<div class="logo">
 				
-				<span>LuckyLand Pharmacy</span>
+				<span>LuckyLand Pharamacy</span>
 			</div>
 			<nav>
 				<ul>
@@ -146,68 +146,61 @@ ResultSet resultSet = null;
 		</div>
 		<div class="main-content">
 				<nav class="navbar navbar-expand-lg navbar-dark bg-primary">
-				
 						
 						<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
 						  <span class="navbar-toggler-icon"></span>
 						</button>
 						<div class="collapse navbar-collapse" id="navbarNav">
 						  <ul class="navbar-nav">
-							<li class="nav-item ">
+							<li class="nav-item">
 							  <a class="nav-link" href="add.jsp">Add Customer <span class="sr-only">(current)</span></a>
 							</li>
-							<li class="nav-item">
+							<li class="nav-item active">
 							  <a class="nav-link" href="view.jsp">View Customer</a>
 							</li>
-							<li class="nav-item active">
+							<li class="nav-item">
 							  <a class="nav-link" href="manageCustomer.jsp">Manage Customer</a>
 							</li>
 							<li class="nav-item">
 							  <a class="nav-link disabled" href="reports.jsp">Reports</a>
 							</li>
+
+							
 							
 						  </ul>
 						  
 						</div>
 					  </nav>
-
-					  <br>
-					  
-					  <div class="ex1">
-			  				<div class="searchCustomer" style="margin-left:12px;">
+					  <nav class="navbar navbar-light bg-light">
 							<form class="form-inline" action="SearchResultManage.jsp">
 							  <input class="form-control mr-sm-2" type="search" name="search" placeholder="Search Number" aria-label="Search">
 							  <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
 							</form>
-							</div>
-							<table id="mytable" class="table table-bordred table-striped">
-								 
-								 <thead>
-								 
-								 
-								 <th>ID</th>
-								  <th>Name</th>
-								   <th>Type</th>
-								   <th>Mobile No</th>
-								   <th>Email</th>
-									<th>Edit</th>
-									
-									 <th>Delete</th>
-								 </thead>
-								 <%
+						  </nav>
+					  <div class="addform" >
+					  <h1>Search Results <span class="badge badge-secondary">New</span></h1>
+							 <table class="table table-bordred table-striped">
+									<thead>
+									  <tr>
+										<th scope="col">ID</th>
+										<th scope="col">Name</th>
+										<th scope="col">Type</th>
+										<th scope="col" >Telephone No</th>
+										<th scope="col">Email</th>
+										<th scope="col">Edit</th>
+										<th scope="col">Delete</th>
+									  </tr>
+							
+<%
 try{
 connection = DriverManager.getConnection(connectionUrl+database, userid, password);
 statement=connection.createStatement();
-String sql ="select * from customerdetails";
+String sql ="select * from customerdetails where mobileno="+search+" ";
 resultSet = statement.executeQuery(sql);
-int i=0;
 while(resultSet.next()){
 %>
-				  <tbody>
-				  
-				  <tr>
-				  
-				  <td><%=resultSet.getInt("id") %></td>
+<tr>
+									 <td><%=resultSet.getInt("id") %></td>
 				  <td><%=resultSet.getString("cname") %></td>
 				  <td><%=resultSet.getString("ctype") %></td>
 				  <td><%=resultSet.getInt("mobileno") %></td>
@@ -215,24 +208,14 @@ while(resultSet.next()){
 				  <td><p data-placement="top" data-toggle="tooltip" title="Edit"><button class="btn btn-primary btn-xs" data-title="Edit" data-toggle="modal" data-target="#edit" ><span class="fas fa-pencil-alt"></span></button></p></td>
 				 
 				  <td><a href="DeleteCustomer.jsp?id=<%=resultSet.getString("id") %>"><button class="btn btn-danger btn-xs" data-title="Delete" data-toggle="modal" data-target="#delete" ><span class="fas fa-trash-alt"></span></button></p></a></td>
-				  
-				  </tr>
-				  
-				  <%
-i++;
+</tr>
+<%
 }
 connection.close();
 } catch (Exception e) {
 e.printStackTrace();
 }
 %>
-			   				 				 		
-				  
-				  </tbody>
-					  
-			  </table>
-			
-			
-		</div>
-	</body>
+</table>
+</body>
 </html>
