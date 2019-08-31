@@ -93,6 +93,12 @@
 			</div>
 			<nav>
 				<ul>
+				<li>
+						<a href="dashboard.jsp">
+							<span></span>
+							<span>Dashboard </span>
+						</a>
+					</li>
 					<li class="active">
 						<a href="#">
 							<span></span>

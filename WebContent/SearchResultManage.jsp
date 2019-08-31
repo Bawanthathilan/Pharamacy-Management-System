@@ -35,7 +35,7 @@ ResultSet resultSet = null;
 		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
 		<link rel="stylesheet" href="http://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
 		<link rel="stylesheet" href="./style/main.css">
-
+		<script src="https://kit.fontawesome.com/b7e89b71b3.js"></script>
 		<script src="https://code.jquery.com/jquery-2.2.0.min.js"></script>
 		<script src="https://code.highcharts.com/highcharts.js"></script>
 		<script src="https://code.highcharts.com/modules/data.js"></script>
@@ -172,14 +172,14 @@ ResultSet resultSet = null;
 						</div>
 					  </nav>
 					  <nav class="navbar navbar-light bg-light">
-							<form class="form-inline" action="SearchResultsCustomer.jsp">
+							<form class="form-inline" action="SearchResultManage.jsp">
 							  <input class="form-control mr-sm-2" type="search" name="search" placeholder="Search Number" aria-label="Search">
 							  <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
 							</form>
 						  </nav>
 					  <div class="addform" >
 					  <h1>Search Results <span class="badge badge-secondary">New</span></h1>
-							 <table class="table table-dark">
+							 <table class="table table-bordred table-striped">
 									<thead>
 									  <tr>
 										<th scope="col">ID</th>
@@ -187,6 +187,8 @@ ResultSet resultSet = null;
 										<th scope="col">Type</th>
 										<th scope="col" >Telephone No</th>
 										<th scope="col">Email</th>
+										<th scope="col">Edit</th>
+										<th scope="col">Delete</th>
 									  </tr>
 							
 <%
@@ -198,11 +200,14 @@ resultSet = statement.executeQuery(sql);
 while(resultSet.next()){
 %>
 <tr>
-									<td><%=resultSet.getInt("id") %></td>
-									<td><%=resultSet.getString("cname") %></td>
-									<td><%=resultSet.getString("ctype") %></td>
-									<td bgcolor="#FF0000"><%=resultSet.getInt("mobileNo") %></td>
-									<td><%=resultSet.getString("email") %></td>
+									 <td><%=resultSet.getInt("id") %></td>
+				  <td><%=resultSet.getString("cname") %></td>
+				  <td><%=resultSet.getString("ctype") %></td>
+				  <td><%=resultSet.getInt("mobileno") %></td>
+				  <td><%=resultSet.getString("email") %></td>
+				  <td><p data-placement="top" data-toggle="tooltip" title="Edit"><button class="btn btn-primary btn-xs" data-title="Edit" data-toggle="modal" data-target="#edit" ><span class="fas fa-pencil-alt"></span></button></p></td>
+				 
+				  <td><a href="DeleteCustomer.jsp?id=<%=resultSet.getString("id") %>"><button class="btn btn-danger btn-xs" data-title="Delete" data-toggle="modal" data-target="#delete" ><span class="fas fa-trash-alt"></span></button></p></a></td>
 </tr>
 <%
 }

@@ -82,10 +82,16 @@ ResultSet resultSet = null;
 		<div class="side-nav">
 			<div class="logo">
 				
-				<span>LuckyLand Pharamacy</span>
+				<span>LuckyLand Pharmacy</span>
 			</div>
 			<nav>
 				<ul>
+				<li>
+						<a href="dashboard.jsp">
+							<span></span>
+							<span>Dashboard </span>
+						</a>
+					</li>
 					<li class="active">
 						<a href="#">
 							<span></span>
@@ -140,6 +146,7 @@ ResultSet resultSet = null;
 		</div>
 		<div class="main-content">
 				<nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+				
 						
 						<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
 						  <span class="navbar-toggler-icon"></span>
@@ -167,8 +174,17 @@ ResultSet resultSet = null;
 					  <br>
 					  
 					  <div class="ex1">
+
+			  				<div class="searchCustomer" style="margin-left:12px;">
+							<form class="form-inline" action="SearchResultManage.jsp">
+							  <input class="form-control mr-sm-2" type="search" name="search" placeholder="Search Number" aria-label="Search">
+							  <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+							</form>
+							</div>
+
 			  
 							
+
 							<table id="mytable" class="table table-bordred table-striped">
 								 
 								 <thead>

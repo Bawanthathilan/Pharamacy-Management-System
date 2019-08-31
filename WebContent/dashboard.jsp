@@ -3,43 +3,58 @@
     
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%@page import="java.sql.DriverManager"%>
+
 <%@page import="java.sql.DriverManager" %>
-<%@page import="java.sql.ResultSet"%>
-<%@page import="java.sql.Statement"%>
-<%@page import="java.sql.Connection"%>
+<%@page import="java.sql.ResultSet" %>
+<%@page import="java.sql.Statement" %>
+<%@page import="java.sql.Connection" %>
 <%
-String driver = "com.mysql.jdbc.Driver";
-String connectionUrl = "jdbc:mysql://localhost:3306/";
-String database = "customer";
-String userid = "root";
-String password = "bawwa";
-String search=request.getParameter("search");
-try {
-Class.forName(driver);
-} catch (ClassNotFoundException e) {
-e.printStackTrace();
-}
-Connection connection = null;
-Statement statement = null;
-ResultSet resultSet = null;
+try
+{
+Class.forName("com.mysql.jdbc.Driver").newInstance();
+Connection con=DriverManager.getConnection("jdbc:mysql://localhost:3306/customer","root","bawwa");
+Statement st=con.createStatement();
+String strQuery = "SELECT COUNT(*) FROM customerdetails";
+ResultSet rs = st.executeQuery(strQuery);
+String Countrow="";
+while(rs.next()){
+
 %>
+
 <html>
 	<head>
 		<meta charset="utf-8">
 	    <meta http-equiv="X-UA-Compatible" content="IE=edge">
     	<meta name="viewport" content="width=device-width, initial-scale=1">
 		<title>Responsive vertical menu navigation</title>
+		<!-- Material Design Bootstrap -->
+		<link href="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.8.8/css/mdb.min.css" rel="stylesheet">
 		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
 		<link href='https://fonts.googleapis.com/css?family=Source+Sans+Pro:700, 600,500,400,300' rel='stylesheet' type='text/css'>
 		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
 		<link rel="stylesheet" href="http://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
 		<link rel="stylesheet" href="./style/main.css">
-
+		<!-- Font Awesome -->
+		<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css">
+		<!-- Bootstrap core CSS -->
+		
+		<!-- notifi -->
+		<script>window.Engagespot={},q=function(e){return function(){(window.engageq=window.engageq||[]).push({f:e,a:arguments})}},f=["captureEvent","subscribe","init","showPrompt","identifyUser","clearUser"];for(k in f)Engagespot[f[k]]=q(f[k]);var s=document.createElement("script");s.type="text/javascript",s.async=!0,s.src="https://cdn.engagespot.co/EngagespotSDK.2.0.js";var x=document.getElementsByTagName("script")[0];x.parentNode.insertBefore(s,x);Engagespot.init('XJdl3JHthJvR6V2M42MrSiE0gaKUR2');</script>
+		
 		<script src="https://code.jquery.com/jquery-2.2.0.min.js"></script>
 		<script src="https://code.highcharts.com/highcharts.js"></script>
 		<script src="https://code.highcharts.com/modules/data.js"></script>
+		<script src="https://cdn.jsdelivr.net/npm/sweetalert2@8"></script>
+		<!-- JQuery -->
+		<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+		<!-- Bootstrap tooltips -->
+		<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.4/umd/popper.min.js"></script>
+		<!-- Bootstrap core JavaScript -->
+		<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.3.1/js/bootstrap.min.js"></script>
+		<!-- MDB core JavaScript -->
+		<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.8.8/js/mdb.min.js"></script>
 		<script src="main.js"></script>
+		
 
 		<style>
 			.ad {
@@ -73,9 +88,12 @@ ResultSet resultSet = null;
 	</head>
 	<body>
 		<div class="header">
+		
 			<div class="logo">
+			
 				
 				<span>Brand</span>
+				
 			</div>
 			<a href="#" class="nav-trigger"><span></span></a>
 		</div>
@@ -83,17 +101,20 @@ ResultSet resultSet = null;
 			<div class="logo">
 				
 				<span>LuckyLand Pharamacy</span>
+				
+				
 			</div>
+			
 			<nav>
 				<ul>
-				<li>
+					<li class="active">
 						<a href="dashboard.jsp">
 							<span></span>
 							<span>Dashboard </span>
 						</a>
 					</li>
-					<li class="active">
-						<a href="#">
+					<li >
+						<a href="add.jsp">
 							<span></span>
 							<span>Customer </span>
 						</a>
@@ -145,72 +166,41 @@ ResultSet resultSet = null;
 			</nav>
 		</div>
 		<div class="main-content">
-				<nav class="navbar navbar-expand-lg navbar-dark bg-primary">
-						
-						<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-						  <span class="navbar-toggler-icon"></span>
-						</button>
-						<div class="collapse navbar-collapse" id="navbarNav">
-						  <ul class="navbar-nav">
-							<li class="nav-item">
-							  <a class="nav-link" href="add.jsp">Add Customer <span class="sr-only">(current)</span></a>
-							</li>
-							<li class="nav-item active">
-							  <a class="nav-link" href="view.jsp">View Customer</a>
-							</li>
-							<li class="nav-item">
-							  <a class="nav-link" href="manageCustomer.jsp">Manage Customer</a>
-							</li>
-							<li class="nav-item">
-							  <a class="nav-link disabled" href="reports.jsp">Reports</a>
-							</li>
+		<div class="card">
+  <!--  <div class="card-body" style="font-size:20px;">
+    DASHBOARD
+  </div>-->
+</div>
 
-							
-							
-						  </ul>
-						  
-						</div>
-					  </nav>
-					  <nav class="navbar navbar-light bg-light">
-							<form class="form-inline" action="SearchResultsCustomer.jsp">
-							  <input class="form-control mr-sm-2" type="search" name="search" placeholder="Search Number" aria-label="Search">
-							  <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
-							</form>
-						  </nav>
-					  <div class="addform" >
-					  <h1>Search Results <span class="badge badge-secondary">New</span></h1>
-							 <table class="table table-dark">
-									<thead>
-									  <tr>
-										<th scope="col">ID</th>
-										<th scope="col">Name</th>
-										<th scope="col">Type</th>
-										<th scope="col" >Telephone No</th>
-										<th scope="col">Email</th>
-									  </tr>
-							
-<%
-try{
-connection = DriverManager.getConnection(connectionUrl+database, userid, password);
-statement=connection.createStatement();
-String sql ="select * from customerdetails where mobileno="+search+" ";
-resultSet = statement.executeQuery(sql);
-while(resultSet.next()){
-%>
-<tr>
-									<td><%=resultSet.getInt("id") %></td>
-									<td><%=resultSet.getString("cname") %></td>
-									<td><%=resultSet.getString("ctype") %></td>
-									<td bgcolor="#FF0000"><%=resultSet.getInt("mobileNo") %></td>
-									<td><%=resultSet.getString("email") %></td>
-</tr>
-<%
+		
+			<!--Nav bar-->
+				<Br>
+					  <!--Nav bar end-->
+					  <div style="padding-left:12px;">
+					<div class="aqua-gradient color-block card text-white bg-primary mb-3" style="max-width: 18rem; ">
+					
+ 					 
+  					<div class="card-body">
+    				<h5 class="card-title"><span class="fa fa-user" aria-hidden="true"></span>&nbsp Customer Count</h5>
+    				<%   
+					Countrow = rs.getString(1);
+//out.println("Total Row :" +Countrow);
+}%>
+   					 <h1 class="card-title"> <% out.println("Total :" +Countrow); %></h1>
+   					
+   					 
+  					</div>
+					</div>
+					</div>
+					  <!--add form-->
+<%					
 }
-connection.close();
-} catch (Exception e) {
+catch (Exception e){
 e.printStackTrace();
-}
-%>
-</table>
-</body>
+}  
+%>	
+
+<div class="spinner-border"></div>
+		</div>
+	</body>
 </html>
