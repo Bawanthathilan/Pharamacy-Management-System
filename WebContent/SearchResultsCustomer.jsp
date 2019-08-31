@@ -82,7 +82,7 @@ ResultSet resultSet = null;
 		<div class="side-nav">
 			<div class="logo">
 				
-				<span>LuckyLand Pharamacy</span>
+				<span>LuckyLand Pharmacy</span>
 			</div>
 			<nav>
 				<ul>

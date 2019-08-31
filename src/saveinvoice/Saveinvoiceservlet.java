@@ -1,4 +1,4 @@
-package saveCustomer;
+package saveinvoice;
 
 import java.io.IOException; 
 import java.io.PrintWriter; 
@@ -13,11 +13,11 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse; 
 
 // Import Database Connection Class file 
-import saveCustomer.DatabaseConnection; 
+import saveinvoice.DatabaseConnection; 
 
 // Servlet Name 
-@WebServlet("/SaveServlet") 
-public class SaveServlet extends HttpServlet { 
+@WebServlet("/Saveinvoiceservlet") 
+public class Saveinvoiceservlet extends HttpServlet { 
 	private static final long serialVersionUID = 1L; 
 
 	protected void doPost(HttpServletRequest request, 
@@ -32,18 +32,18 @@ HttpServletResponse response)
 			// Create a SQL query to insert data into demo table 
 			// demo table consists of two columns, so two '?' is used 
 			PreparedStatement st = con 
-				.prepareStatement("insert into customerdetails values(?, ?,?,?,?)"); 
+				.prepareStatement("insert into neworder values(?,?,?,?,?,?,?)"); 
 
 			// For the first parameter, 
 			// get the data using request object 
-			// sets the data to st pointer 
-			st.setInt(1, Integer.valueOf(request.getParameter("id"))); 
-			st.setString(2, String.valueOf(request.getParameter("cname"))); 
-			st.setString(3, String.valueOf(request.getParameter("ctype"))); 
-			st.setInt(4, Integer.valueOf(request.getParameter("tp"))); 
-
-			// Same for second parameter 
-			st.setString(5, request.getParameter("email")); 
+			// sets the data to st pointer
+			st.setInt(1, Integer.valueOf(request.getParameter("invoicenumber")));
+			st.setString(2, String.valueOf(request.getParameter("customername"))); 
+			st.setInt(3, Integer.valueOf(request.getParameter("mobilenumber"))); 
+			st.setString(4, String.valueOf(request.getParameter("medicinename"))); 
+			st.setString(5, String.valueOf(request.getParameter("quantity"))); 
+			st.setString(6, String.valueOf(request.getParameter("gram"))); 
+			st.setDate(7, java.sql.Date.valueOf(request.getParameter("date"))); 
 
 			// Execute the insert command using executeUpdate() 
 			// to make changes in database 
@@ -59,7 +59,7 @@ HttpServletResponse response)
 
 			out.println("<script language='JavaScript'>alert('Data Successfully Inserted!');</script>");
 			
-			RequestDispatcher rd = request.getRequestDispatcher("add.jsp");
+			RequestDispatcher rd = request.getRequestDispatcher("viewinginvoice.jsp");
 			rd.include(request, response);
 		
 		} 
