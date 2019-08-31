@@ -1,6 +1,7 @@
 package saveCustomer;
 
 import java.io.IOException; 
+import java.sql.*;
 import java.io.PrintWriter; 
 import java.sql.Connection; 
 import java.sql.PreparedStatement;
@@ -53,6 +54,7 @@ HttpServletResponse response)
 			PrintWriter out = response.getWriter(); 
 
 			out.println("<script language='JavaScript'>alert('Data Successfully Inserted!');</script>");
+			
 			
 			RequestDispatcher rd = request.getRequestDispatcher("add.jsp");
 			rd.include(request, response);

@@ -192,6 +192,8 @@ while(rs.next()){
   					</div>
 					</div>
 					</div>
+					
+					
 					  <!--add form-->
 <%					
 }
