@@ -58,7 +58,7 @@
 		<div class="side-nav">
 			<div class="logo">
 				
-				<span>LuckyLand Pharamacy</span>
+				<span>LuckyLand Pharamacyy</span>
 			</div>
 			<nav>
 				<ul>
