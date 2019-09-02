@@ -1,8 +1,3 @@
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-    pageEncoding="ISO-8859-1"%>
-    
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
 <%@page import="java.sql.DriverManager" %>
 <%@page import="java.sql.ResultSet" %>
@@ -10,12 +5,12 @@
 <%@page import="java.sql.Connection" %>
 
 <%
-	String id = request.getParameter("mobileno");
+	
 	String driverName = "com.mysql.jdbc.Driver";
 	String ConnectionUrl = "jdbc:mysql://localhost:3306/";
-	String dbName = "customer";
+	String dbName = "luckylandsystem";
 	String UserId="root";
-	String password = "bawwa";
+	String password = "uzpb877f";
 	
 	try{
 		Class.forName(driverName);
@@ -29,14 +24,16 @@
 
 %>
 
-
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
+    pageEncoding="ISO-8859-1"%>
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 
 <html>
 	<head>
 		<meta charset="utf-8">
 	    <meta http-equiv="X-UA-Compatible" content="IE=edge">
     	<meta name="viewport" content="width=device-width, initial-scale=1">
-		<title>Responsive vertical menu navigation</title>
+		<title>Manage Utility</title>
 		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
 		<link href='https://fonts.googleapis.com/css?family=Source+Sans+Pro:700, 600,500,400,300' rel='stylesheet' type='text/css'>
 		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
@@ -84,7 +81,7 @@
 				
 				<span>Brand</span>
 			</div>
-			<a href="#" class="nav-trigger"><span></span></a>
+				<a href="#" class="nav-trigger"><span></span></a>
 		</div>
 		<div class="side-nav">
 			<div class="logo">
@@ -93,9 +90,9 @@
 			</div>
 			<nav>
 				<ul>
-					<li class="active">
+					<li>
 						<a href="#">
-							<span></span>
+						
 							<span>Customer </span>
 						</a>
 					</li>
@@ -136,9 +133,9 @@
 							<span>Employee </span>
 						</a>
 					</li>
-					<li>
-						<a href="#">
-							
+					<li class="active">
+							<a href="#">
+								<span></span>
 							<span>Finance </span>
 						</a>
 					</li>
@@ -146,6 +143,7 @@
 			</nav>
 		</div>
 		<div class="main-content">
+			<!--Nav bar-->
 				<nav class="navbar navbar-expand-lg navbar-dark bg-primary">
 						
 						<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
@@ -153,81 +151,106 @@
 						</button>
 						<div class="collapse navbar-collapse" id="navbarNav">
 						  <ul class="navbar-nav">
-							<li class="nav-item">
-							  <a class="nav-link" href="add.jsp">Add Customer <span class="sr-only">(current)</span></a>
-							</li>
 							<li class="nav-item active">
-							  <a class="nav-link" href="view.jsp">View Customer</a>
+							  <a class="nav-link" href="addUtility.jsp">Utility </a>
 							</li>
 							<li class="nav-item">
-							  <a class="nav-link" href="manageCustomer.jsp">Manage Customer</a>
+								<a class="nav-link" href="viewUtility.jsp">View Utility</a>
+							  </li>
+							<li class="nav-item">
+							  <a class="nav-link" href="manageUtility.jsp">Manage Utility<span class="sr-only">(current)</span></a>
 							</li>
 							<li class="nav-item">
-							  <a class="nav-link disabled" href="reports.jsp">Reports</a>
+							  <a class="nav-link" href="viewExpenses.jsp">Expenses</a>
 							</li>
-
+							<li class="nav-item">
+							  <a class="nav-link " href="viewIncome.jsp">Income</a>
+							</li>
+							<li class="nav-item">
+								<a class="nav-link" href="generateReports.jsp">Generate Reports</a>
+							</li>
 							
 							
 						  </ul>
 						  
 						</div>
 					  </nav>
-					  <nav class="navbar navbar-light bg-light">
-							<form class="form-inline" action="SearchResultsCustomer.jsp">
-							  <input class="form-control mr-sm-2" type="search" name="search" placeholder="Search Number" aria-label="Search">
-							  <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
-							</form>
-						  </nav>
-						  <div class="ex1">
-					  <div class="addform" >
-							 <table class="table table-dark">
-									<thead>
-									  <tr>
-										<th scope="col">ID</th>
-										<th scope="col">Name</th>
-										<th scope="col">Type</th>
-										<th scope="col">Telephone No</th>
-										<th scope="col">Email</th>
-									  </tr>
-									  
-									
-										<%
-											try{
-												connection = DriverManager.getConnection(ConnectionUrl+dbName,UserId,password);
-												statement=connection.createStatement();
-												String sql ="SELECT * from customerdetails";
-												
-												resultset = statement.executeQuery(sql);
-												while(resultset.next()){
-													
-												
-											
-										
-									%>
-									<tr>
-									<td><%=resultset.getInt("id") %></td>
-									<td><%=resultset.getString("cname") %></td>
-									<td><%=resultset.getString("ctype") %></td>
-									<td><%=resultset.getInt("mobileNo") %></td>
-									<td><%=resultset.getString("email") %></td>
-									
-									</tr>
-									<%
-												}
-											connection.close();	
-											} catch(Exception e){
-												e.printStackTrace();
-											}
-											
-									%>
-									
-									
-								  </table>
-
-					  </div>
-					  </div>
+					 <br>
 					 
+					 <nav class="navbar navbar-light bg-light">
+						<form class="form-inline" action="searchUtility.jsp">
+							  		<label for="inputState">Utility Type &nbsp</label>
+									<select id="uType" name="search" type="search" class="form-control mr-sm-2" aria-label="Search">
+									  <option selected> </option>
+									  <option>Electricity</option>
+									  <option>Water Supply</option>
+									  <option>Telephone</option>
+									  <option>WiFi</option>
+									  <option>Maintenance</option>
+									</select>
+							  <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+						</form>
+					</nav>
+					  
+					 <div class="">
+							<table id="mytable" class="table table-bordred table-striped">
+								 
+								<thead>
+								
+								 	<th>Utility No</th>
+								  	<th>Utility Type</th>
+								   	<th>Description</th>
+								   	<th>Date</th>
+								   	<th>Payment Method</th>
+								   	<th>Payment Amount</th>
+									<th>Edit</th>
+									<th>Delete</th>
+								 </thead>
+					<%
+						try{
+							connection = DriverManager.getConnection(ConnectionUrl+dbName, UserId, password);
+							statement=connection.createStatement();
+							String sql ="select * from utilitydetails";
+							resultset = statement.executeQuery(sql);
+							int i=0;
+							while(resultset.next()){
+					%>
+					
+				  <tbody>
+				  
+				  <tr>
+				  
+				    <td><%=resultset.getInt("utilityID") %></td>
+					<td><%=resultset.getString("utype") %></td>
+					<td><%=resultset.getString("description") %></td>
+					<td><%=resultset.getDate("date") %></td>
+					<td><%=resultset.getString("method") %></td>
+					<td><%=resultset.getDouble("amount") %></td>
+									
+				  <td><a href="updateUtility.jsp?utilityID=<%=resultset.getInt("utilityID")%>"><p data-placement="top" data-toggle="tooltip" title="Edit"><button class="btn btn-primary btn-xs" data-title="Edit" data-toggle="modal" data-target="#edit" ><span class="fas fa-pencil-alt"></span></button></p></a></td>
+				  
+				  <td><a href="deleteUtility.jsp?id=<%=resultset.getInt("utilityID") %>"><p data-placement="top" data-toggle="tooltip" title="Delete"><button class="btn btn-danger btn-xs" data-title="Delete" data-toggle="modal" data-target="#delete" ><span class="fas fa-trash-alt"></span></button></p></a></td>
+				  
+				  </tr>
+				  
+				  
+				  <%
+						i++;
+						}
+						connection.close();
+						} catch (Exception e) {
+						e.printStackTrace();
+						}
+				  %>
+			   				 				 		
+				  
+				  </tbody>
+					  
+			  </table>
+			
 			
 		</div>
 	</body>
 </html>
+	
+	

@@ -1,10 +1,40 @@
-<!DOCTYPE html>
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
+    pageEncoding="ISO-8859-1"%>
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+
+<%@page import="java.sql.DriverManager" %>
+<%@page import="java.sql.ResultSet" %>
+<%@page import="java.sql.Statement" %>
+<%@page import="java.sql.Connection" %>
+
+ 
+<%
+	String utilityID = request.getParameter("utilityID");
+	String driverName = "com.mysql.jdbc.Driver";
+	String ConnectionUrl = "jdbc:mysql://localhost:3306/";
+	String dbName = "luckylandsystem";
+	String UserId="root";
+	String password = "uzpb877f";
+	
+	try{
+		Class.forName(driverName);
+		}catch(ClassNotFoundException e){
+			e.printStackTrace();
+		}
+	
+	Connection connection = null;
+	Statement statement = null;
+	ResultSet resultset = null;
+
+%>
+
+
 <html>
 	<head>
 		<meta charset="utf-8">
 	    <meta http-equiv="X-UA-Compatible" content="IE=edge">
     	<meta name="viewport" content="width=device-width, initial-scale=1">
-		<title>Responsive vertical menu navigation</title>
+		<title>View Utility</title>
 		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
 		<link href='https://fonts.googleapis.com/css?family=Source+Sans+Pro:700, 600,500,400,300' rel='stylesheet' type='text/css'>
 		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
@@ -14,7 +44,6 @@
 		<script src="https://code.jquery.com/jquery-2.2.0.min.js"></script>
 		<script src="https://code.highcharts.com/highcharts.js"></script>
 		<script src="https://code.highcharts.com/modules/data.js"></script>
-		<script src="https://cdn.jsdelivr.net/npm/sweetalert2@8"></script>
 		<script src="main.js"></script>
 
 		<style>
@@ -53,7 +82,7 @@
 				
 				<span>Brand</span>
 			</div>
-			<a href="#" class="nav-trigger"><span></span></a>
+				<a href="#" class="nav-trigger"><span></span></a>
 		</div>
 		<div class="side-nav">
 			<div class="logo">
@@ -62,9 +91,9 @@
 			</div>
 			<nav>
 				<ul>
-					<li class="active">
+					<li>
 						<a href="#">
-							<span></span>
+						
 							<span>Customer </span>
 						</a>
 					</li>
@@ -105,9 +134,9 @@
 							<span>Employee </span>
 						</a>
 					</li>
-					<li>
-						<a href="#">
-							
+					<li class="active">
+							<a href="#">
+								<span></span>
 							<span>Finance </span>
 						</a>
 					</li>
@@ -124,16 +153,22 @@
 						<div class="collapse navbar-collapse" id="navbarNav">
 						  <ul class="navbar-nav">
 							<li class="nav-item active">
-							  <a class="nav-link" href="add.jsp">Add Customer <span class="sr-only">(current)</span></a>
+							  <a class="nav-link" href="addUtility.jsp">Utility</a>
 							</li>
 							<li class="nav-item">
-							  <a class="nav-link" href="view.jsp">View Customer</a>
+								<a class="nav-link" href="viewUtility.jsp">View Utility<span class="sr-only">(current)</span></a>
+							  </li>
+							<li class="nav-item">
+							  <a class="nav-link" href="manageUtility.jsp">Manage Utility</a>
 							</li>
 							<li class="nav-item">
-							  <a class="nav-link" href="manageCustomer.jsp">Manage Customer</a>
+							  <a class="nav-link" href="viewExpenses.jsp">Expenses</a>
 							</li>
 							<li class="nav-item">
-							  <a class="nav-link disabled" href="reports.jsp">Reports</a>
+							  <a class="nav-link " href="viewIncome.jsp">Income</a>
+							</li>
+							<li class="nav-item">
+								<a class="nav-link" href="generateReports.jsp">Generate Reports</a>
 							</li>
 							
 							
@@ -142,50 +177,57 @@
 						</div>
 					  </nav>
 					  <!--Nav bar end-->
-
-					  <!--add form-->
 					  
+					  <div class="ex1">
 					  <div class="addform" >
-							<form class="form-horizontal" action="./SaveServlet" method="post">
-								<div class="form-group">
-								  <label class="control-label col-sm-2" for="email">Customer ID :</label>
-								  <div class="col-sm-10">
-									<input type="text" name ="id" class="form-control" id="id" >
-								  </div>
-								</div>
-								<div class="form-group">
-								  <label class="control-label col-sm-2" for="pwd">Customer Name:</label>
-								  <div class="col-sm-10">
-									<input type="text" name = "cname" class="form-control" id="name">
-								  </div>
-								</div>
-								<div class="form-group col-md-4">
-										<label for="inputState">Customer Type:</label>
-										<select id="inputState" class="form-control" name="ctype">
-										  <option selected>Regular</option>
-						
-										  <option>Bulk</option>
-										</select>
-									  </div>
-								<div class="form-group">
-										<label class="control-label col-sm-2" for="pwd">Telephone No:</label>
-										<div class="col-sm-10">
-										  <input type="text" name="tp" class="form-control" id="tp">
-										</div>
-									  </div>
-									  <div class="form-group">
-											<label class="control-label col-sm-2" for="pwd">Email:</label>
-											<div class="col-sm-10">
-											  <input type="text" name="email" class="form-control" id="email">
-											</div>
-										  </div>
-							
-								<div class="form-group">
-										<button type="submit"  class="btn btn-primary">Submit</button>
-								</div>
-								
-							  </form> 
+							 <table class="table table-dark">
+									<thead>
+									  <tr>
+										<th scope="col">Utility No</th>
+										<th scope="col">Utility Type</th>
+										<th scope="col">Description</th>
+										<th scope="col">Date</th>
+										<th scope="col">Payment Method</th>
+										<th scope="col">Payment Amount</th>
+									  </tr>
+									  
+									
+									<%
+											try{
+												connection = DriverManager.getConnection(ConnectionUrl+dbName,UserId,password);
+												statement=connection.createStatement();
+												String sql ="SELECT * from utilitydetails";
+												
+												resultset = statement.executeQuery(sql);
+												while(resultset.next()){ 
+											
+											
+										
+								   %>
+									<tr>
+									<td><%=resultset.getInt("utilityID") %></td>
+									<td><%=resultset.getString("utype") %></td>
+									<td><%=resultset.getString("description") %></td>
+									<td><%=resultset.getDate("date") %></td>
+									<td><%=resultset.getString("method") %></td>
+									<td><%=resultset.getDouble("amount") %></td>
+										
+									</tr>
+									<%
+												}
+											connection.close();	
+											} catch(Exception e){
+												e.printStackTrace();
+											}
+											
+									%>
+									
+									
+								  </table>
+
 					  </div>
+				</div>
+					 
 			
 		</div>
 	</body>
