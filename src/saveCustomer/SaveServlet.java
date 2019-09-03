@@ -25,6 +25,9 @@ public class SaveServlet extends HttpServlet {
 HttpServletResponse response) 
 		throws ServletException, IOException 
 	{ 
+		
+			
+		
 		try { 
 
 			 
@@ -44,7 +47,7 @@ HttpServletResponse response)
 			st.setString(5, request.getParameter("email")); 
 
 		
-			st.executeUpdate(); 
+			int i = st.executeUpdate(); 
 
 			
 			st.close(); 

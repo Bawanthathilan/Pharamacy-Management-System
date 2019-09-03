@@ -205,7 +205,7 @@ while(resultSet.next()){
 				  <td><%=resultSet.getString("ctype") %></td>
 				  <td><%=resultSet.getInt("mobileno") %></td>
 				  <td><%=resultSet.getString("email") %></td>
-				  <td><p data-placement="top" data-toggle="tooltip" title="Edit"><button class="btn btn-primary btn-xs" data-title="Edit" data-toggle="modal" data-target="#edit" ><span class="fas fa-pencil-alt"></span></button></p></td>
+				  <td><a href="UpdateCustomer.jsp?id=<%=resultSet.getString("id")%>"><button class="btn btn-primary btn-xs" data-title="Edit" data-toggle="modal" data-target="#edit" ><span class="fas fa-pencil-alt"></span></button></p></td>
 				 
 				  <td><a href="DeleteCustomer.jsp?id=<%=resultSet.getString("id") %>"><button class="btn btn-danger btn-xs" data-title="Delete" data-toggle="modal" data-target="#delete" ><span class="fas fa-trash-alt"></span></button></p></a></td>
 </tr>

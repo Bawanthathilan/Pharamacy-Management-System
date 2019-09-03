@@ -45,7 +45,8 @@ try
     document.open();
 
     /* new paragraph instance initialized and add function write in pdf file*/
-    document.add(new Paragraph("---------------------------------------------------------REPORT---------------------------------------------------------\n\n"));
+      
+    document.add(new Paragraph( "---------------------------------------------------------REPORT---------------------------------------------------------\n\n"));
     document.add(new Paragraph("                             				           CREATED REPORT BY-LuckyLand Pharamacy\n\n"));
     document.add(new Paragraph("---------------------------------------------------------------------------------------------------------------------------------"));
     document.addCreationDate();

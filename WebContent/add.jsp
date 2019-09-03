@@ -10,12 +10,50 @@
 		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
 		<link rel="stylesheet" href="http://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
 		<link rel="stylesheet" href="./style/main.css">
-
+		
 		<script src="https://code.jquery.com/jquery-2.2.0.min.js"></script>
 		<script src="https://code.highcharts.com/highcharts.js"></script>
 		<script src="https://code.highcharts.com/modules/data.js"></script>
 		<script src="https://cdn.jsdelivr.net/npm/sweetalert2@8"></script>
 		<script src="main.js"></script>
+		<script>
+			function nomsg(){
+				var result = confirm("Are you want to reset");
+				if(result){
+					return true;
+					
+				}else
+					return false;
+			}
+		
+		</script>
+		
+		<script>
+		function validateForm() {
+			  var b = document.forms["addform"]["id"].value;
+			  if (b == "") {
+			    alert("ID must be filled out.");
+			    return false;
+			  }
+			  var c = document.forms["addform"]["name"].value;
+			  if (c == "") {
+			    alert("Name must be filled out.");
+			    return false;
+			  }
+			  
+			  var e = document.forms["addform"]["tp"].value;
+			  if (e == "") {
+			    alert("Telephone Number must be filled out.");
+			    return false;
+			  }
+			  var e = document.forms["addform"]["email"].value;
+			  if (e == "") {
+			    alert("Email must be filled out.");
+			    return false;
+			  }
+		}
+		</script>
+		
 
 		<style>
 			.ad {
@@ -58,7 +96,7 @@
 		<div class="side-nav">
 			<div class="logo">
 				
-				<span>LuckyLand Pharamacyy</span>
+				<span>LuckyLand Pharamacy</span>
 			</div>
 			<nav>
 				<ul>
@@ -75,26 +113,26 @@
 						</a>
 					</li>
 					<li>
-						<a href="#">
+						<a href="addStocks.jsp">
 
 							
 							<span>Stock </span>
 						</a>
 					</li>
 					<li >
-						<a href="#">
+						<a href="addItem.jsp">
 							
 							<span>Item </span>
 						</a>
 					</li>
 					<li>
-						<a href="#">
+						<a href="addSup.jsp">
 							
 							<span>Supplier </span>
 						</a>
 					</li>
 					<li>
-						<a href="#">
+						<a href="addSupplierOrders.jsp">
 							
 							<span>Supplier Order </span>
 						</a>
@@ -112,7 +150,7 @@
 						</a>
 					</li>
 					<li>
-						<a href="#">
+						<a href="addUtility.jsp">
 							
 							<span>Finance </span>
 						</a>
@@ -152,7 +190,7 @@
 					  <!--add form-->
 					  
 					  <div class="addform" >
-							<form class="form-horizontal" action="./SaveServlet" method="post">
+							<form class="form-horizontal" name="addform" onsubmit="return validateForm()" action="./SaveServlet" method="post">
 								<div class="form-group">
 								  <label class="control-label col-sm-2" for="email">Customer ID :</label>
 								  <div class="col-sm-10">
@@ -182,18 +220,22 @@
 									  <div class="form-group">
 											<label class="control-label col-sm-2" for="pwd">Email:</label>
 											<div class="col-sm-10">
-											  <input type="text" name="email" class="form-control" id="email">
+											  <input type="text" name="email" class="form-control" id="email" required>
 											</div>
 										  </div>
+										  
 							
 								<div class="form-group">
-										<button type="submit" data-toggle="modal" data-target="#exampleModal" class="btn btn-primary">Submit</button>
+										<button type="submit" data-toggle="modal" data-target="#exampleModal" class="btn btn-primary" >Submit</button>
+										<button type="reset" data-toggle="modal" data-target="#exampleModal" class="btn btn-primary" onclick="return nomsg()">Reset</button>
+
 								</div>
 								
-								
 							  </form> 
+							  
 					  </div>
 			
 		</div>
+		
 	</body>
 </html>

@@ -136,7 +136,7 @@ ResultSet resultSet = null;
 						</a>
 					</li>
 					<li>
-						<a href="#">
+						<a href="addUtility.jsp">
 							
 							<span>Finance </span>
 						</a>
@@ -174,17 +174,12 @@ ResultSet resultSet = null;
 					  <br>
 					  
 					  <div class="ex1">
-
 			  				<div class="searchCustomer" style="margin-left:12px;">
 							<form class="form-inline" action="SearchResultManage.jsp">
 							  <input class="form-control mr-sm-2" type="search" name="search" placeholder="Search Number" aria-label="Search">
 							  <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
 							</form>
 							</div>
-
-			  
-							
-
 							<table id="mytable" class="table table-bordred table-striped">
 								 
 								 <thead>

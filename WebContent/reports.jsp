@@ -111,7 +111,7 @@
 						</a>
 					</li>
 					<li>
-						<a href="#">
+						<a href="addUtility.jsp">
 							
 							<span>Finance </span>
 						</a>
@@ -150,17 +150,17 @@
 					  
 
 							<div class="addform" >
-									<form class="form-horizontal" action="#">
+									<form class="form-horizontal"  action="pdfGenCustomer.jsp">
 										<div class="form-group">
-										  <label class="control-label col-sm-2" for="email">Report name :</label>
+										  <label class="control-label col-sm-2" for="email" >Report name :</label>
 										  <div class="col-sm-10">
-											<input type="text" class="form-control" id="email" >
+											<input type="text" class="form-control" id="email" name="reportname">
 										  </div>
 										</div>
 										<div class="form-group">
-										  <label class="control-label col-sm-2" for="pwd">Report <Title></Title>:</label>
+										  <label class="control-label col-sm-2" for="pwd">Report Title <Title></Title>:</label>
 										  <div class="col-sm-10">
-											<input type="text" class="form-control" id="pwd">
+											<input type="text" class="form-control" id="pwd" name="title">
 										  </div>
 										</div>
 										<div class="form-group col-md-4">
@@ -171,7 +171,9 @@
 												  <option>Annual</option>
 												</select>
 											  </div>
+										<div style="margin-left:850px; margin-top:-60px; position:absolute;">
 										
+										</div>
 									
 										<div class="form-group">
 												<button type="submit" class="btn btn-primary"><a href="pdfGenCustomer.jsp" style="color: white;">Download</a></button>
