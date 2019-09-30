@@ -1,4 +1,32 @@
-<!DOCTYPE html>
+<%@page import="java.sql.DriverManager"%>
+<%@page import="java.sql.ResultSet"%>
+<%@page import="java.sql.Statement"%>
+<%@page import="java.sql.Connection"%>
+<%
+String id = request.getParameter("id");
+String driver = "com.mysql.jdbc.Driver";
+String connectionUrl = "jdbc:mysql://localhost:3306/";
+String database = "customer";
+String userid = "root";
+String password = "bawwa";
+try {
+Class.forName(driver);
+} catch (ClassNotFoundException e) {
+e.printStackTrace();
+}
+Connection connection = null;
+Statement statement = null;
+ResultSet resultSet = null;
+%>
+<%
+try{
+connection = DriverManager.getConnection(connectionUrl+database, userid, password);
+statement=connection.createStatement();
+String sql ="select * from customerdetails where id="+id;
+resultSet = statement.executeQuery(sql);
+while(resultSet.next()){
+%>
+
 <html>
 	<head>
 		<meta charset="utf-8">
@@ -58,12 +86,18 @@
 		<div class="side-nav">
 			<div class="logo">
 				
-				<span>LuckyLand Pharamacyy</span>
+				<span>LuckyLand Pharamacy</span>
 			</div>
 			<nav>
 				<ul>
+					<li>
+						<a href="dashboard.jsp">
+							<span></span>
+							<span>Dashboard </span>
+						</a>
+					</li>
 					<li class="active">
-						<a href="#">
+						<a href="add.jsp">
 							<span></span>
 							<span>Customer </span>
 						</a>
@@ -146,22 +180,22 @@
 					  <!--add form-->
 					  
 					  <div class="addform" >
-							<form class="form-horizontal" action="./SaveServlet" method="post">
+							<form class="form-horizontal"  method="post" action="UpdateProcessCustomer.jsp">
 								<div class="form-group">
 								  <label class="control-label col-sm-2" for="email">Customer ID :</label>
 								  <div class="col-sm-10">
-									<input type="text" name ="id" class="form-control" id="id" >
+									<input type="text" name ="id" class="form-control" id="id" value="<%=resultSet.getString("id") %>">
 								  </div>
 								</div>
 								<div class="form-group">
 								  <label class="control-label col-sm-2" for="pwd">Customer Name:</label>
 								  <div class="col-sm-10">
-									<input type="text" name = "cname" class="form-control" id="name">
+									<input type="text" name = "cname" class="form-control" id="name" value="<%=resultSet.getString("cname") %>">
 								  </div>
 								</div>
 								<div class="form-group col-md-4">
 										<label for="inputState">Customer Type:</label>
-										<select id="inputState" class="form-control" name="ctype">
+										<select id="inputState" class="form-control" name="ctype" value="<%=resultSet.getString("ctype") %>">
 										  <option selected>Regular</option>
 						
 										  <option>Bulk</option>
@@ -170,13 +204,13 @@
 								<div class="form-group">
 										<label class="control-label col-sm-2" for="pwd">Telephone No:</label>
 										<div class="col-sm-10">
-										  <input type="text" name="tp" class="form-control" id="tp">
+										  <input type="text" name="mobileno" class="form-control" id="mobileno" value="<%=resultSet.getInt("mobileno") %>">
 										</div>
 									  </div>
 									  <div class="form-group">
 											<label class="control-label col-sm-2" for="pwd">Email:</label>
 											<div class="col-sm-10">
-											  <input type="text" name="email" class="form-control" id="email">
+											  <input type="text" name="email" class="form-control" id="email" value="<%=resultSet.getString("email") %>">
 											</div>
 										  </div>
 							
@@ -186,6 +220,13 @@
 								
 								
 							  </form> 
+							  <%
+}
+connection.close();
+} catch (Exception e) {
+e.printStackTrace();
+}
+%>
 					  </div>
 			
 		</div>

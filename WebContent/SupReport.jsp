@@ -14,7 +14,6 @@
 		<script src="https://code.jquery.com/jquery-2.2.0.min.js"></script>
 		<script src="https://code.highcharts.com/highcharts.js"></script>
 		<script src="https://code.highcharts.com/modules/data.js"></script>
-		<script src="https://cdn.jsdelivr.net/npm/sweetalert2@8"></script>
 		<script src="main.js"></script>
 
 		<style>
@@ -58,13 +57,13 @@
 		<div class="side-nav">
 			<div class="logo">
 				
-				<span>LuckyLand Pharamacyy</span>
+				<span>LuckyLand Pharmacy</span>
 			</div>
 			<nav>
 				<ul>
-					<li class="active">
+					<li>
 						<a href="#">
-							<span></span>
+						
 							<span>Customer </span>
 						</a>
 					</li>
@@ -81,9 +80,9 @@
 							<span>Item </span>
 						</a>
 					</li>
-					<li>
+					<li class="active">
 						<a href="#">
-							
+							<span></span>
 							<span>Supplier </span>
 						</a>
 					</li>
@@ -115,6 +114,7 @@
 			</nav>
 		</div>
 		<div class="main-content">
+
 			<!--Nav bar-->
 				<nav class="navbar navbar-expand-lg navbar-dark bg-primary">
 						
@@ -123,70 +123,64 @@
 						</button>
 						<div class="collapse navbar-collapse" id="navbarNav">
 						  <ul class="navbar-nav">
+							<li class="nav-item">
+							  <a class="nav-link" href="addSup.jsp">Add Supplier <span class="sr-only">(current)</span></a>
+							</li>
+							<li class="nav-item">
+							  <a class="nav-link" href="supProfile.jsp">Supplier Profile</a>
+							</li>
+							<li class="nav-item">
+							  <a class="nav-link" href="viewSup.jsp">View Supplier</a>
+							</li>
 							<li class="nav-item active">
-							  <a class="nav-link" href="add.jsp">Add Customer <span class="sr-only">(current)</span></a>
+							  <a class="nav-link disabled" href="SupReport.jsp">Reports</a>
 							</li>
-							<li class="nav-item">
-							  <a class="nav-link" href="view.jsp">View Customer</a>
-							</li>
-							<li class="nav-item">
-							  <a class="nav-link" href="manageCustomer.jsp">Manage Customer</a>
-							</li>
-							<li class="nav-item">
-							  <a class="nav-link disabled" href="reports.jsp">Reports</a>
-							</li>
-							
 							
 						  </ul>
 						  
 						</div>
 					  </nav>
 					  <!--Nav bar end-->
-
-					  <!--add form-->
 					  
-					  <div class="addform" >
-							<form class="form-horizontal" action="./SaveServlet" method="post">
-								<div class="form-group">
-								  <label class="control-label col-sm-2" for="email">Customer ID :</label>
-								  <div class="col-sm-10">
-									<input type="text" name ="id" class="form-control" id="id" >
-								  </div>
-								</div>
-								<div class="form-group">
-								  <label class="control-label col-sm-2" for="pwd">Customer Name:</label>
-								  <div class="col-sm-10">
-									<input type="text" name = "cname" class="form-control" id="name">
-								  </div>
-								</div>
-								<div class="form-group col-md-4">
-										<label for="inputState">Customer Type:</label>
-										<select id="inputState" class="form-control" name="ctype">
-										  <option selected>Regular</option>
-						
-										  <option>Bulk</option>
-										</select>
-									  </div>
-								<div class="form-group">
-										<label class="control-label col-sm-2" for="pwd">Telephone No:</label>
-										<div class="col-sm-10">
-										  <input type="text" name="tp" class="form-control" id="tp">
-										</div>
-									  </div>
-									  <div class="form-group">
-											<label class="control-label col-sm-2" for="pwd">Email:</label>
-											<div class="col-sm-10">
-											  <input type="text" name="email" class="form-control" id="email">
-											</div>
+
+							<div class="addform" >
+									<form class="form-horizontal" action="ReportSupplier.jsp">
+										<div class="form-group">
+										  <label class="control-label col-sm-2" for="email">Report ID:: </label>
+										  <div class="col-sm-8">
+											<input type="text" class="form-control" name="rID" >
 										  </div>
-							
-								<div class="form-group">
-										<button type="submit" data-toggle="modal" data-target="#exampleModal" class="btn btn-primary">Submit</button>
-								</div>
-								
-								
-							  </form> 
+										</div>
+										<div class="form-group">
+										  <label class="control-label col-sm-2" for="pwd">Report Name:: <Title></Title>:</label>
+										  <div class="col-sm-8">
+											<input type="text" class="form-control" name="rName">
+										  </div>
+										</div>
+										<!--div class="form-group">
+										  <label class="control-label col-sm-3" for="pwd">Company Details <Title></Title>:</label>
+										  <div class="col-sm-8">
+											<input type="text" class="form-control" id="pwd">
+										  </div>
+										</div-->
+										<div class="form-group col-md-4">
+												<label for="inputState">Report Source:: </label>
+												<select id="inputState" class="form-control">
+												  <option selected>Choose...</option>
+												  <option>Monthly</option>
+												  <option>Annual</option>
+												</select>
+											  </div>
+										
+									
+										<div class="form-group">
+												<button type="submit" class="btn btn-primary"><a style ="color:white;">Download</button>
+										</div>
+										
+									  </form> 
+							  
 					  </div>
+					  
 			
 		</div>
 	</body>
