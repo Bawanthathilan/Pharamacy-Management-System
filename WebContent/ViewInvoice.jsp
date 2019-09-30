@@ -28,7 +28,7 @@ ResultSet resultSet = null;
 		<meta charset="utf-8">
 	    <meta http-equiv="X-UA-Compatible" content="IE=edge">
     	<meta name="viewport" content="width=device-width, initial-scale=1">
-		<title>Responsive vertical menu navigation</title>
+		<title>ViewOrders</title>
 		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
 		<link href='https://fonts.googleapis.com/css?family=Source+Sans+Pro:700, 600,500,400,300' rel='stylesheet' type='text/css'>
 		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
@@ -283,7 +283,7 @@ tbody tr:hover {
 		<div class="side-nav">
 			<div class="logo">
 				
-				<span>LuckyLand Pharamacy</span>
+				<span>LuckyLand Pharmacy</span>
 			</div>
 			<nav>
 				<ul>
@@ -367,7 +367,7 @@ tbody tr:hover {
 						</div>
 					  </nav>
 					  <div class= "newinvoice">
-                            <h1>Today Invoices</h1>
+                            <h1>Today Orders</h1>
                       </div>
 					  <nav class="navbar navbar-light bg-light">
 							<form class="form-inline" action="searchinvoices.jsp">
@@ -383,13 +383,16 @@ tbody tr:hover {
 												<table style='margin-top:-270px;'>
 													<thead>
 														<tr class="table100-head">
-															<th class="column1">Item Number</th>
-															<th class="column2">Medicine Name</th>
-															<th class="column3">Quantity</th>
-															<th class="column4">Unit Price</th>
-															<th class="column5">Discounts</th>
-															<th class="column6">Total</th>
-														</tr>
+									<th class="column1">invoice Number</th>
+									<th class="column1">Date</th>
+									<th class="column1">Customer Name</th>
+									<th class="column1">Mobile Number</th>
+									<th class="column2">Medicine Name</th>
+									<th class="column3">Quantity</th>
+									<th class="column4">Gram/Milligram</th>
+									<th class="column5">Discounts</th>
+									<th class="column6">Total</th>
+								</tr>
 														
 													</thead>
 													

@@ -23,20 +23,30 @@ ResultSet resultSet = null;
 		<meta charset="utf-8">
 	    <meta http-equiv="X-UA-Compatible" content="IE=edge">
     	<meta name="viewport" content="width=device-width, initial-scale=1">
-		<title>Responsive vertical menu navigation</title>
+		<title>Manageorder</title>
 		
 		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
 		<link href='https://fonts.googleapis.com/css?family=Source+Sans+Pro:700, 600,500,400,300' rel='stylesheet' type='text/css'>
 		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
 		<link rel="stylesheet" href="http://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
 		<link rel="stylesheet" href="./style/main.css">
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+		<link href='https://fonts.googleapis.com/css?family=Source+Sans+Pro:700, 600,500,400,300' rel='stylesheet' type='text/css'>
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
+		<link rel="stylesheet" href="http://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
+		<link rel="stylesheet" href="./style/main.css">
+		<script src="https://kit.fontawesome.com/b7e89b71b3.js"></script>
+		<script src="https://code.jquery.com/jquery-2.2.0.min.js"></script>
+		<script src="https://code.highcharts.com/highcharts.js"></script>
+		<script src="https://code.highcharts.com/modules/data.js"></script>
+		<script src="main.js"></script>
 
 		<!--<script src="https://code.jquery.com/jquery-2.2.0.min.js"></script>
 		<script src="https://kit.fontawesome.com/b7e89b71b3.js"></script>-->
 		<script src="https://code.highcharts.com/highcharts.js"></script>
 		<script src="https://code.highcharts.com/modules/data.js"></script>
 		<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
-<script src="http://getbootstrap.com/dist/js/bootstrap.min.js"></script>
+		<script src="http://getbootstrap.com/dist/js/bootstrap.min.js"></script>
 		<script src="main.js"></script>
 
 		<style>
@@ -180,7 +190,9 @@ ResultSet resultSet = null;
 								 <th>Invoice Number</th>
 								  <th>Name</th>
 								   <th>Contact Number</th>
+								   <th>Medicine Names</th>
 								   <th>Issued Date</th>
+								   <th>Amount</th>
 									<th>Edit</th>
 									<th>Delete</th>
 								 </thead>
@@ -200,13 +212,16 @@ while(resultSet.next()){
 				  <td><%=resultSet.getInt("invoicenum") %></td>
 				  <td><%=resultSet.getString("customername") %></td>
 				  <td><%=resultSet.getInt("mobilenumber") %></td>
+				   <td><%=resultSet.getString("medname") %></td>
 				  <td><%=resultSet.getDate("date") %></td>
-				  <td><p data-placement="top" data-toggle="tooltip" title="Edit"><button class="btn btn-primary btn-xs" data-title="Edit" data-toggle="modal" data-target="#edit" ><span class="fas fa-pencil-alt"></span></button></p></td>
-				  <form action ="Remove">
-				  <td><a href="RemoveCustomer.jsp?id=<%=resultSet.getString("invoicenum") %>"><p data-placement="top" data-toggle="tooltip" title="Delete"><button class="btn btn-danger btn-xs" data-title="Delete" data-toggle="modal" data-target="#delete" ><span class="fas fa-trash-alt"></span></button></p></a></td>
-				  </form>
+				  <td><%=resultSet.getDouble("amount") %></td>
+				  <td><a href="Updateorder.jsp?id=<%=resultSet.getString("invoicenum") %>"><p data-placement="top" data-toggle="tooltip" title="Edit"><button class="btn btn-primary btn-xs" data-title="Edit" data-toggle="modal" data-target="#edit" ><span class="fas fa-pencil-alt"></span></button></p></td>
+				  
+				  <td><a href="Deleteinvoice.jsp?id=<%=resultSet.getString("invoicenum") %>"><p data-placement="top" data-toggle="tooltip" title="Delete"><button class="btn btn-danger btn-xs" onclick="return confirm('are you sure to continue?')" data-title="Delete" data-toggle="modal" data-target="#delete" ><span class="fas fa-trash-alt"></span></button></p></a></td>
+				 
 				  </tr>
 				  <%
+				  
 i++;
 }
 connection.close();
@@ -220,5 +235,17 @@ e.printStackTrace();
 			
 			
 		</div>
+		<script>
+			function confirmComplete(){
+				alert("confirmComplete");
+				var answer=confirm("Are you sure you want to continue?");
+				if (answer==true){
+					return true;
+				}else{
+					return false;
+				}
+			}
+		</script>
 	</body>
+	
 </html>

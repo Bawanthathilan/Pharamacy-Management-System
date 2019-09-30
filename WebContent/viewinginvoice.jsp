@@ -4,7 +4,7 @@
 		<meta charset="utf-8">
 	    <meta http-equiv="X-UA-Compatible" content="IE=edge">
     	<meta name="viewport" content="width=device-width, initial-scale=1">
-		<title>Responsive vertical menu navigation</title>
+		<title>ViewingOrders</title>
 		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
 		<link href='https://fonts.googleapis.com/css?family=Source+Sans+Pro:700, 600,500,400,300' rel='stylesheet' type='text/css'>
 		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
@@ -12,11 +12,20 @@
 		<link rel="stylesheet" href="./style/main.css">
 		<link rel="stylesheet" href="css/util.css">
 		<link rel="stylesheet" href="css/mainn.css">
+		<link rel ="stylesheet"href="https://www.tutorialrepublic.com/twitter-bootstrap-tutorial/bootstrap-tables.php">
 
 		<script src="https://code.jquery.com/jquery-2.2.0.min.js"></script>
 		<script src="https://code.highcharts.com/highcharts.js"></script>
 		<script src="https://code.highcharts.com/modules/data.js"></script>
 		<script src="main.js"></script>
+		
+		<%@page import="java.sql.DriverManager"%>
+		<%@page import="java.sql.ResultSet"%>
+		<%@page import="java.sql.Statement"%>
+		<%@page import="java.sql.Connection"%>
+		<%
+		ResultSet resultSet = null;
+		%>
 
 		<style>
 			.butt{
@@ -350,19 +359,51 @@ tbody tr:hover {
 			<div class="container-table100">
 				<div class="wrap-table100">
 					<div class="table100">
-						<table>
-							<thead>
-								<tr class="table100-head">
-									<th class="column1">Item Number</th>
-									<th class="column2">Medicine Name</th>
-									<th class="column3">Quantity</th>
-									<th class="column4">Gram/Milligram</th>
-									<th class="column5">Discounts</th>
-									<th class="column6">Total</th>
-								</tr>
-							</thead>
+						<table class="table table-dark">
+    						<thead>
+        						<tr>
+						            <th>Invoice Number</th>
+						            <th>Date</th>
+						            <th>Customer Name</th>
+						            <th>Mobile Number</th>
+						            <th>Medicine Name</th>
+						            <th>Unit price</th>
+						            <th>Amount</th>
+        						</tr>
+    						</thead>
+							<%
+										try{
+										Class.forName("com.mysql.jdbc.Driver");
+								        Connection connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/invoice1?useSSL=false","root","maleesha1234");
+								        
+								        Statement statement = connection.createStatement();
+								        
+										String sql ="SELECT * FROM neworder";
+								
+										resultSet = statement.executeQuery(sql);
+										while(resultSet.next()){
+										%>
 							<tbody>
-									
+											  <tr>
+										<th class="row"><%=resultSet.getInt("invoicenum") %></th>
+                                        <td><%=resultSet.getDate("Date") %></td>
+                                        <td><%=resultSet.getString("customername") %></td>
+                                        <td><%=resultSet.getInt("mobilenumber") %></td>
+                                        <td><%=resultSet.getString("medname") %></td>
+                                        <td><%=resultSet.getDouble("unitprice")%></td>
+                                        <td><%=resultSet.getDouble("amount")%></td>
+                                     
+                                       
+                                        
+									  </tr>
+									  
+									<% 
+									}
+							
+									} catch (Exception e) {
+									out.println(e);
+									}
+									%>
 									
 									
 									
@@ -375,7 +416,9 @@ tbody tr:hover {
 			</div>
 		</div>
 		<div class="butt">
-			<button type="submit" class="btn btn-primary">Print Invoice</button>
+		<form action="AddInvoice.jsp" >
+			<button type="submit" class="btn btn-primary">Back</button>
+			</form>
 		</div>
 	
 	</body>

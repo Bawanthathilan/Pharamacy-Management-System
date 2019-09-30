@@ -25,25 +25,30 @@ HttpServletResponse response)
 		throws ServletException, IOException 
 	{ 
 		try { 
-
+			Double unitprice = Double.valueOf(request.getParameter("unit"));
+			Integer quantity = Integer.valueOf(request.getParameter("quantity"));
+			Double amount = (Double) unitprice*quantity;
 			// Initialize the database 
 			Connection con = DatabaseConnection.initializeDatabase(); 
-
 			// Create a SQL query to insert data into demo table 
-			// demo table consists of two columns, so two '?' is used 
+			// demo table consists of two columns, so two '?' is used
+			//Double unitprice = Double.valueOf(request.getParameter("unitprice"));
+			//Integer quantity = Integer.valueOf(request.getParameter("quan"));
+			//Double totalprice = (Double) unitprice * quantity;
 			PreparedStatement st = con 
-				.prepareStatement("insert into neworder values(?,?,?,?,?,?,?)"); 
+				.prepareStatement("insert into neworder(customername,mobilenumber,medname,quan,gram,date,unitprice,amount)values(?,?,?,?,?,?,?,?)"); 
 
 			// For the first parameter, 
 			// get the data using request object 
 			// sets the data to st pointer
-			st.setInt(1, Integer.valueOf(request.getParameter("invoicenumber")));
-			st.setString(2, String.valueOf(request.getParameter("customername"))); 
-			st.setInt(3, Integer.valueOf(request.getParameter("mobilenumber"))); 
-			st.setString(4, String.valueOf(request.getParameter("medicinename"))); 
-			st.setString(5, String.valueOf(request.getParameter("quantity"))); 
-			st.setString(6, String.valueOf(request.getParameter("gram"))); 
-			st.setDate(7, java.sql.Date.valueOf(request.getParameter("date"))); 
+			st.setString(1, String.valueOf(request.getParameter("customername"))); 
+			st.setInt(2, Integer.valueOf(request.getParameter("mobilenumber"))); 
+			st.setString(3, String.valueOf(request.getParameter("medicinename"))); 
+			st.setInt(4, quantity ); 
+			st.setString(5, String.valueOf(request.getParameter("gram"))); 
+			st.setDate(6, java.sql.Date.valueOf(request.getParameter("date"))); 
+			st.setDouble(7,unitprice);
+			st.setDouble(8,amount);
 
 			// Execute the insert command using executeUpdate() 
 			// to make changes in database 
@@ -57,7 +62,13 @@ HttpServletResponse response)
 			// to display the successful result 
 			PrintWriter out = response.getWriter(); 
 
-			out.println("<script language='JavaScript'>alert('Data Successfully Inserted!');</script>");
+			out.println("<script src='https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/6.11.4/sweetalert2.all.js'></script>");
+			out.println("<script src='https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js'></script>");
+			out.println("<script>");
+			out.println("$(document).ready(function(){");
+			out.println("swal ( 'Added Successfully' ,  '' ,  'success' );");
+			out.println("});");
+			out.println("</script>"); 
 			
 			RequestDispatcher rd = request.getRequestDispatcher("viewinginvoice.jsp");
 			rd.include(request, response);

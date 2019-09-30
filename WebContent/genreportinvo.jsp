@@ -52,7 +52,7 @@ try
     while(rs.next())
     {
           // fetch & writing records in pdf files
-        document.add(new Paragraph("MSG_ID ::"+rs.getString(1)+"\nTIME ::"+rs.getString(5)+"\nNAME ::"+rs.getString(2)+"\nEMAIL ::"+rs.getString(3)+"\nMESSAGE ::"+rs.getString(4)+"\n\n"));
+        document.add(new Paragraph("MSG_ID ::"+rs.getString(1)+"\nQuantity ::"+rs.getString(5)+"\nNAME ::"+rs.getString(2)+"\nMobileno ::"+rs.getString(3)+"\nMESSAGE ::"+rs.getString(4)+"\n\n"));
     }
     document.add(new Paragraph("---------------------------------------------------------PAGE NO::"+document.getPageNumber()+"------------------------------------------------------"));
     

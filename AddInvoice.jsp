@@ -27,7 +27,7 @@ String password = "maleesha1234";
 		<meta charset="utf-8">
 	    <meta http-equiv="X-UA-Compatible" content="IE=edge">
     	<meta name="viewport" content="width=device-width, initial-scale=1">
-		<title>AddCustomerorders</title>
+		<title>Responsive vertical menu navigation</title>
 		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
 		<link href='https://fonts.googleapis.com/css?family=Source+Sans+Pro:700, 600,500,400,300' rel='stylesheet' type='text/css'>
 		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
@@ -485,10 +485,9 @@ String password = "maleesha1234";
 								<div class="form-group">
 										<label class="control-label col-sm-2" for="unit">Unit Price:</label>
 										<div class="form-group col-md-6">
-										  <input type="Double" name="unit"class="form-control" id="unit">
+										  <input type="text" name="unit"class="form-control" id="unit">
 										</div>
 									  </div>
-									  
 								
 							
 									  
