@@ -26,6 +26,8 @@
 		<script src="https://code.jquery.com/jquery-2.2.0.min.js"></script>
 		<script src="https://code.highcharts.com/highcharts.js"></script>
 		<script src="https://code.highcharts.com/modules/data.js"></script>
+		<script src='https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/6.11.4/sweetalert2.all.js'></script>
+		<script src='https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js'></script>
 		<script src="main.js"></script>
 
 		<style>
@@ -78,57 +80,52 @@
 		function validateForm() {
 			  var x1 = document.forms["supplierOrdersForm"]["sOrderID"].value;
 			  if (x1 == "") {
-			    alert("Order ID must be filled out");
+				  swal ( 'Order ID must be filled out' ,  '' ,  'warning' );
 			    return false;
 			  }
 			  var x1 = document.forms["supplierOrdersForm"]["sOrderDate"].value;
 			  if (x1 == "") {
-			    alert("Order Date must be filled out");
+				  swal ( 'Order Date must be filled out' ,  '' ,  'warning' );
 			    return false;
 			  }
 			  var x1 = document.forms["supplierOrdersForm"]["supplierID"].value;
 			  if (x1 == "") {
-			    alert("Supplier ID must be filled out");
+				  swal ( 'Supplier ID must be filled out' ,  '' ,  'warning' );
 			    return false;
 			  }
 			  var x1 = document.forms["supplierOrdersForm"]["supplierName"].value;
 			  if (x1 == "") {
-			    alert("Supplier Name must be filled out");
+				  swal ( 'Supplier Name must be filled out' ,  '' ,  'warning' );
 			    return false;
 			  }
 			  var x1 = document.forms["supplierOrdersForm"]["itemID"].value;
 			  if (x1 == "") {
-			    alert("Item ID must be filled out");
+				  swal ( 'Item ID must be filled out' ,  '' ,  'waring' );
 			    return false;
 			  }
 			  var x1 = document.forms["supplierOrdersForm"]["itemName"].value;
 			  if (x1 == "") {
-			    alert("Item Name must be filled out");
+				  swal ( 'Item Name must be filled out' ,  '' ,  'warning' );
 			    return false;
 			  }
 			  var x1 = document.forms["supplierOrdersForm"]["NOSunits"].value;
 			  if (x1 == "") {
-			    alert("No.of Units must be filled out");
+				  swal ( 'No. of Units must be filled out' ,  '' ,  'warning' );
 			    return false;
 			  }
 			  var x1 = document.forms["supplierOrdersForm"]["arrivingDate"].value;
 			  if (x1 == "") {
-			    alert("Arriving Date must be filled out");
+				  swal ( 'Arriving Date must be filled out' ,  '' ,  'warning' );
 			    return false;
 			  }
 			  var x1 = document.forms["supplierOrdersForm"]["unitPrice"].value;
 			  if (x1 == "") {
-			    alert("unit Price must be filled out");
+				  swal ( 'Unit Price must be filled out' ,  '' ,  'warning' );
 			    return false;
 			  }
 		}
 		
-		Swal.fire(
-				  'Good job!',
-				  'You clicked the button!',
-				  'success'
-				)
-	
+		
 	</script>
 	
 	
@@ -221,7 +218,7 @@
 								  <a class="nav-link disabled" href="thisMonthSupplies.jsp">This Month</a>
 								</li>
 							  <li class="nav-item">
-								<a class="nav-link disabled" href="reports.jsp">Reports</a>
+								<a class="nav-link disabled" href="supplierOrdersReports.jsp">Reports</a>
 							  </li>
 							
 							

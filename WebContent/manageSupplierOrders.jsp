@@ -13,7 +13,7 @@
 <html>
 <head>
 <meta charset="ISO-8859-1">
-<title>Update Supplier Orders</title>
+<title>Manage Supplier Orders</title>
  <meta charset="utf-8">
 	    <meta http-equiv="X-UA-Compatible" content="IE=edge">
     	<meta name="viewport" content="width=device-width, initial-scale=1">
@@ -160,7 +160,7 @@
                                           <a class="nav-link " href="thisMonthSupplierOrders.jsp">This Month </a>
                                         </li>
                                       <li class="nav-item">
-                                        <a class="nav-link " href="reports.html">Reports</a>
+                                        <a class="nav-link " href="supplierOrdersReports.jsp">Reports</a>
                                       </li>
                                     
                                     
@@ -175,15 +175,16 @@
 								 
 								 <thead>
                                     <th>Order ID</th>
-                                    <th>Order Date</th>
+                                    <th style="width:10%">Order Date</th>
                                     <th>Supplier ID</th>
-                                    <th style="width: 200px">Supplier Name</th>
+                                    <th >Supplier Name</th>
                                     <th>Item ID</th>
                                     <th>Item Name</th>
                                     <th>No.of Units</th>
                                     <th>Arriving Date</th>
                                     <th>Unit Price</th>
                                     <th>Total Price</th>
+                                    <th>Status</th>
 									<th>Edit</th>
 									<th>Delete</th>
 									<th>Arrived</th>
@@ -213,9 +214,11 @@
                     <td><%=resultSet.getString("arrivingDate") %></td>
                     <td><%=resultSet.getFloat("unitPrice") %></td>
                     <td><%=resultSet.getFloat("totalPrice") %></td>
+                     <td><%=resultSet.getString("status") %></td>
 				  <td><p data-placement="top" data-toggle="tooltip" title="Edit"><a href="updateSupplierOrders.jsp?sOrderID=<%=resultSet.getString("sOrderID") %>"><button class="btn btn-primary btn-xs" data-title="Edit" data-toggle="modal" data-target="#edit" ><span class="fas fa-pencil-alt"></span></button></a></p></td>
-				  <td><p data-placement="top" data-toggle="tooltip" title="Delete"><a href="deleteSupplierOrders.jsp?sOrderID=<%=resultSet.getString("sOrderID") %>"><button class="btn btn-danger btn-xs" data-title="Delete" data-toggle="modal" data-target="#delete" ><span class="fas fa-trash-alt"></span></button></a></p></td>
-				  <td><p data-placement="top" data-toggle="tooltip" title="Arrived"><a href="arrivedStatusUpdateSupplierOrders.jsp?sOrderID=<%=resultSet.getString("sOrderID") %>"><button id="btn_status_update" class="btn btn-success btn-xs" onclick="return disableButton()" data-title="Arrived" data-toggle="modal" data-target="update" ><span class="fas fa-check-alt"></span></button></p></td>
+				  <td><p data-placement="top" data-toggle="tooltip" title="Delete"><a href="deleteSupplierOrders.jsp?sOrderID=<%=resultSet.getString("sOrderID") %>"><button class="btn btn-danger btn-xs" data-title="Delete" data-toggle="modal" onclick="return confirm('Are you sure you want to continue')" data-target="#delete" ><span class="fas fa-trash-alt"></span></button></a></p></td>
+				  <td><p data-placement="top" data-toggle="tooltip" title="Arrived"><a href="arrivedStatusUpdateSupplierOrders.jsp?sOrderID=<%=resultSet.getString("sOrderID") %>"><button id="btn_status_update" class="btn btn-success btn-xs" onclick="return disableButton()" data-title="Arrived" data-toggle="modal" data-target="update" ><span class="fas fa-check-circle"></span></button></p></td>
+				
 				</tr>
                 </tbody>
         <% 
@@ -234,6 +237,21 @@
 		document.getElementById(btn_status_update).disabled = true;
 		alert("Button has been disabled");
 	}
+	
+	function confirmComplete() {
+		alert("confirmComplete");
+		var answer=confirm("Are you sure you want to continue");
+		if (answer==true)
+		  {
+		    return true;
+		  }
+		else
+		  {
+		    return false;
+		  }
+		}
+	
+	
 
 </script>
 

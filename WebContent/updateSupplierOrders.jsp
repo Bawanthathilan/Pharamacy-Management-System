@@ -83,54 +83,56 @@ if(resultSet.next()) {
 		
 		<script>
 		function validateForm() {
-			  var x1 = document.forms["supplierOrdersForm"]["sOrderID"].value;
-			  if (x1 == "") {
-			    alert("Order ID must be filled out");
+			  var a1 = document.forms["updateSupplierOrders"]["sOrderID"].value;
+			  if (a1 == "") {
+				  swal ( 'Order ID must be filled out' ,  '' ,  'warning' );
 			    return false;
 			  }
-			  var x1 = document.forms["supplierOrdersForm"]["sOrderDate"].value;
-			  if (x1 == "") {
-			    alert("Order Date must be filled out");
+			  var b1 = document.forms["updateSupplierOrders"]["sOrderDate"].value;
+			  if (b1 == "") {
+				  swal ( 'Order Date must be filled out' ,  '' ,  'warning' );
 			    return false;
 			  }
-			  var x1 = document.forms["supplierOrdersForm"]["supplierID"].value;
-			  if (x1 == "") {
-			    alert("Supplier ID must be filled out");
+			  var c1 = document.forms["updateSupplierOrders"]["supplierID"].value;
+			  if (c1 == "") {
+				  swal ( 'Supplier ID must be filled out' ,  '' ,  'warning' );
 			    return false;
 			  }
-			  var x1 = document.forms["supplierOrdersForm"]["supplierName"].value;
-			  if (x1 == "") {
-			    alert("Supplier Name must be filled out");
+			  var d1 = document.forms["updateSupplierOrders"]["supplierName"].value;
+			  if (d1 == "") {
+				  swal ( 'Supplier Name must be filled out' ,  '' ,  'warning' );
 			    return false;
 			  }
-			  var x1 = document.forms["supplierOrdersForm"]["itemID"].value;
-			  if (x1 == "") {
-			    alert("Item ID must be filled out");
+			  var e1 = document.forms["updateSupplierOrders"]["itemID"].value;
+			  if (e1 == "") {
+				  swal ( 'Item ID must be filled out' ,  '' ,  'waring' );
 			    return false;
 			  }
-			  var x1 = document.forms["supplierOrdersForm"]["itemName"].value;
-			  if (x1 == "") {
-			    alert("Item Name must be filled out");
+			  var f1 = document.forms["updateSupplierOrders"]["itemName"].value;
+			  if (f1 == "") {
+				  swal ( 'Item Name must be filled out' ,  '' ,  'warning' );
 			    return false;
 			  }
-			  var x1 = document.forms["supplierOrdersForm"]["NOSunits"].value;
-			  if (x1 == "") {
-			    alert("No.of Units must be filled out");
+			  var g1 = document.forms["updateSupplierOrders"]["NOSunits"].value;
+			  if (g1 == "") {
+				  swal ( 'No. of Units must be filled out' ,  '' ,  'warning' );
 			    return false;
 			  }
-			  var x1 = document.forms["supplierOrdersForm"]["arrivingDate"].value;
-			  if (x1 == "") {
-			    alert("Arriving Date must be filled out");
+			  var h1 = document.forms["updateSupplierOrders"]["arrivingDate"].value;
+			  if (h1 == "") {
+				  swal ( 'Arriving Date must be filled out' ,  '' ,  'warning' );
 			    return false;
 			  }
-			  var x1 = document.forms["supplierOrdersForm"]["unitPrice"].value;
-			  if (x1 == "") {
-			    alert("unit Price must be filled out");
+			  var i1 = document.forms["updateSupplierOrders"]["unitPrice"].value;
+			  if (i1 == "") {
+				  swal ( 'Unit Price must be filled out' ,  '' ,  'warning' );
 			    return false;
 			  }
 		}
-	
+		
+		
 	</script>
+	
 		
 
 	</head>
@@ -224,7 +226,7 @@ if(resultSet.next()) {
 								  <a class="nav-link disabled" href="thisMonthSupplies.jsp">This Month</a>
 								</li>
 							  <li class="nav-item">
-								<a class="nav-link disabled" href="reports.jsp">Reports</a>
+								<a class="nav-link disabled" href="supplierOrdersReports.jsp">Reports</a>
 							  </li>
 							
 							
@@ -241,13 +243,13 @@ if(resultSet.next()) {
 					  <!--add form-->
 					  
                       <div class="addform" >
-							<form class="form-horizontal" name="supplierOrdersForm" onsubmit="return validateForm()" action="http://localhost:8080/SupplierOrderManagement/updateProcessSupplierOrders.jsp" method="post">
+							<form name="updateSupplierOrders" onsubmit="return validateForm()" class="form-horizontal" action="./updateProcessSupplierOrders.jsp" method="POST">
 								<div class="row">
 									<div class="column">
 										<div class="form-group">
 												<label class="control-label col-sm-2" style="max-width: 25%" >Order ID :</label>
 												<div class="col-sm-10">
-												 <input type="text" class="form-control" id="sOrderID" name=sOrderID value="<%=resultSet.getString("sOrderID") %>">
+												 <input type="text" class="form-control" id="sOrderID" name="sOrderID" value="<%=resultSet.getString("sOrderID") %>" required>
 												</div>	 
 										</div>
 								
@@ -257,7 +259,7 @@ if(resultSet.next()) {
                                         <div class="form-group">
                                                 <label class="control-label col-sm-2" style="max-width: 25%" >Order date :</label>
                                                 <div class="col-sm-10">
-                                                <input type="date" class="form-control" id="sOrderDate"  name="sOrderDate" value="<%=resultSet.getDate("sOrderDate") %>" >
+                                                <input type="date" class="form-control" id="sOrderDate"  name="sOrderDate" value="<%=resultSet.getDate("sOrderDate") %>"  >
                                                 </div>	 
                                         </div>	
 									</div>
@@ -267,7 +269,7 @@ if(resultSet.next()) {
                                             <div class="form-group">
                                                     <label class="control-label col-sm-2" style="max-width: 25%" >Supplier ID :</label>
                                                     <div class="col-sm-10">
-                                                     <input type="text" class="form-control" id="supplierID" name="supplierID" value="<%=resultSet.getString("supplierID") %>" >
+                                                     <input type="text" class="form-control" id="supplierID" name="supplierID" value="<%=resultSet.getString("supplierID") %>" required >
                                                     </div>	 
                                             </div>
                                     
@@ -277,7 +279,7 @@ if(resultSet.next()) {
                                             <div class="form-group">
                                                     <label class="control-label col-sm-2" style="max-width: 30%" >Supplier Name :</label>
                                                     <div class="col-sm-10">
-                                                    <input type="text" class="form-control" id="supplierName" name="supplierName" value="<%=resultSet.getString("supplierName") %>" >
+                                                    <input type="text" class="form-control" id="supplierName" name="supplierName" value="<%=resultSet.getString("supplierName") %>"  required>
                                                     </div>	 
                                             </div>	
                                         </div>
@@ -289,7 +291,7 @@ if(resultSet.next()) {
                                                 <div class="form-group">
                                                         <label class="control-label col-sm-2" style="max-width: 25%" >Item ID :</label>
                                                         <div class="col-sm-10">
-                                                        <input type="text" class="form-control" id="itemID" name="itemID" value="<%=resultSet.getString("itemID") %>">
+                                                        <input type="text" class="form-control" id="itemID" name="itemID" value="<%=resultSet.getString("itemID") %>" required>
                                                         </div>	 
                                                 </div>
                                         
@@ -299,7 +301,7 @@ if(resultSet.next()) {
                                                 <div class="form-group">
                                                         <label class="control-label col-sm-2" style="max-width: 25%" >Item Name :</label>
                                                         <div class="col-sm-10">
-                                                        <input type="text" class="form-control" id="itemName" name="itemName" value="<%=resultSet.getString("itemName") %>" >
+                                                        <input type="text" class="form-control" id="itemName" name="itemName" value="<%=resultSet.getString("itemName") %>" required >
                                                         </div>	 
                                                 </div>	
                                             </div>
@@ -309,7 +311,7 @@ if(resultSet.next()) {
                                                     <div class="form-group">
                                                             <label class="control-label col-sm-2" style="max-width: 25%" >No of Units :</label>
                                                             <div class="col-sm-10">
-                                                             <input type="text" class="form-control" id="NOSunits" name="NOSunits" value="<%=resultSet.getInt("NOSunits") %>">
+                                                             <input type="text" class="form-control" id="NOSunits" name="NOSunits" value="<%=resultSet.getInt("NOSunits") %>" required>
                                                             </div>	 
                                                     </div>
                                             
@@ -319,7 +321,7 @@ if(resultSet.next()) {
                                                     <div class="form-group">
                                                             <label class="control-label col-sm-2" style="max-width: 30%" >Arriving date :</label>
                                                             <div class="col-sm-10">
-                                                            <input type="date" class="form-control" id="arrivingDate" name="arrivingDate" value="<%=resultSet.getDate("arrivingDate") %>" >
+                                                            <input type="date" class="form-control" id="arrivingDate" name="arrivingDate" value="<%=resultSet.getDate("arrivingDate") %>" required>
                                                             </div>	 
                                                     </div>	
                                                 </div>
@@ -329,7 +331,7 @@ if(resultSet.next()) {
                                                         <div class="form-group">
                                                                 <label class="control-label col-sm-2" style="max-width: 25%" >Unit Price :</label>
                                                                 <div class="col-sm-10">
-                                                                 <input type="text" class="form-control" id="unitPrice" name="unitPrice" value="<%=resultSet.getFloat("unitPrice") %>" >
+                                                                 <input type="text" class="form-control" id="unitPrice" name="unitPrice" value="<%=resultSet.getFloat("unitPrice") %>" required>
                                                                 </div>	 
                                                         </div>
                                                 
@@ -341,7 +343,7 @@ if(resultSet.next()) {
                                                         <div class="form-group">
                                                                 <label class="control-label col-sm-2" style="max-width: 25%" >Total Price :</label>
                                                                 <div class="col-sm-10">
-                                                                 <input type="text" class="form-control" id="totalPrice" name=totalPrice value="<%=resultSet.getFloat("totalPrice") %>" disabled>
+                                                                 <input type="text" class="form-control" id="totalPrice" name="totalPrice" value="<%=resultSet.getFloat("totalPrice") %>" disabled>
                                                                 </div>	 
                                                         </div>
                                                 

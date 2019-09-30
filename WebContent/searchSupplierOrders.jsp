@@ -165,7 +165,7 @@ ResultSet resultSet = null;
 								  <a class="nav-link disabled" href="thisMonthSupplies.jsp">This Month</a>
 								</li>
 							  <li class="nav-item">
-								<a class="nav-link disabled" href="reports.jsp">Reports</a>
+								<a class="nav-link disabled" href="supplierOrdersReports.jsp">Reports</a>
 							  </li>
 							
 
@@ -208,7 +208,7 @@ while(resultSet.next()){
 %>
 <tr>
 									
-										<td><%=resultSet.getString("sOrderID") %></td>
+										<td style="background:red"><%=resultSet.getString("sOrderID") %></td>
                                         <td><%=resultSet.getDate("sOrderDate") %></td>
                                         <td><%=resultSet.getString("supplierID") %></td>
                                         <td bgcolour="#FF0000"><%=resultSet.getString("supplierName") %></td>

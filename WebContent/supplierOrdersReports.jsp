@@ -29,7 +29,7 @@ ResultSet resultSet = null;
 		<meta charset="utf-8">
 	    <meta http-equiv="X-UA-Compatible" content="IE=edge">
     	<meta name="viewport" content="width=device-width, initial-scale=1">
-		<title>View Search Results</title>
+		<title>Reports Supplier Orders</title>
 		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
 		<link href='https://fonts.googleapis.com/css?family=Source+Sans+Pro:700, 600,500,400,300' rel='stylesheet' type='text/css'>
 		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
@@ -152,21 +152,21 @@ ResultSet resultSet = null;
 						</button>
 						<div class="collapse navbar-collapse" id="navbarNav">
 						  <ul class="navbar-nav">
+							<li class="nav-item">
+							  <a class="nav-link" href="addSupplierOrders.jsp">New Order </a>
+							</li>
 							<li class="nav-item ">
-								<a class="nav-link" href="addSupplierOrders.jsp">New Order </a>
-							  </li>
-							  <li class="nav-item ">
-								<a class="nav-link" href="viewSupplierOrders.jsp">Order History <span class="sr-only">(current)</span></a>
-							  </li>
-							  <li class="nav-item">
-								<a class="nav-link" href="manageSupplierOrders.jsp">Manage Orders</a>
-							  </li>
-							  <li class="nav-item">
-								  <a class="nav-link" href="thisMonthSupplies.jsp">This Month</a>
-								</li>
-							  <li class="nav-item active">
-								<a class="nav-link " href="supplierOrdersReports.jsp">Reports</a>
-							  </li>
+							  <a class="nav-link" href="viewSupplierOrders.jsp">Order History <span class="sr-only">(current)</span></a>
+							</li>
+							<li class="nav-item">
+							  <a class="nav-link" href="manageSupplierOrders.jsp">Manage Orders</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="thisMonthSupplierOrders.jsp">This Month</a>
+                              </li>
+							<li class="nav-item active">
+							  <a class="nav-link" href="supplierOrdersReports.jsp">Reports</a>
+							</li>
 							
 
 							
@@ -179,11 +179,11 @@ ResultSet resultSet = null;
 					  <!--Nav bar end-->
 					  				<br>
 					  				<div class="itemreportform" >
-									<form class="form-horizontal" action="#">
+									<form class="form-horizontal" action="reportsSupplierOrders.jsp">
 										<div class="form-group">
 										  <label class="control-label col-sm-2" for="email">Report name :</label>
 										  <div class="col-sm-10">
-											<input type="text" class="form-control" id="email" >
+											<input type="text" class="form-control" name="rName" >
 										  </div>
 										</div>
 										<div class="form-group">
@@ -191,32 +191,22 @@ ResultSet resultSet = null;
 										
 										  <div class="col-sm-10">
 										  <select class="form-control" name="itemreport" id="ireport">
-											<option value="0">Choose...</option>
+											
 											<option value="1">All supplier Orders</option>
-											<option> Upcoming Orders </option>
-											<option> Delayed Orders </option>
+											<option value="2"> Monthly Orders </option>
+				
 											</select>
 										  </div>
 										</div>
 										
-										<div class="form-group">
-										<div class="col-sm-10">
-										 <label for="inputState">Report Type:</label>
-										  </div>
-										  </div>
+										
 									  
-									  <div class="form-group">
-									  <div class="col-sm-10">
-										<div class="btn-group" role="group" aria-label="First group">
-    											<button type="button" class="btn btn-secondary">Monthly</button>
-    											<button type="button" class="btn btn-primary">Annual</button>
-											</div>
-											</div>
+					
 									  </div>
 									  
 										<div class="form-group">
 										<div class="col-sm-10">
-												<button type="submit" class="btn btn-primary"><a href ="genReportSupplierOrders.jsp" style ="color:white;">Download</a></button>
+												<button type="submit" class="btn btn-primary"><a  style ="color:white;">Download</a></button>
 												</div>
 										</div>
 										

@@ -143,7 +143,7 @@
                                 <a class="nav-link" href="thisMonthSUpplierOrders.jsp">This Month</a>
                               </li>
 							<li class="nav-item">
-							  <a class="nav-link" href="reports.jsp">Reports</a>
+							  <a class="nav-link" href="supplierOrdersReports.jsp">Reports</a>
 							</li>
 
 							

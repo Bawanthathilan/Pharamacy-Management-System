@@ -3,13 +3,15 @@
 <%@page import="java.sql.Statement"%>
 <%@page import="java.sql.Connection"%>
 <%@page import="java.util.*"%>
+<%@page import="java.text.SimpleDateFormat"%>
+<%@page import="java.text.DateFormat"%>
 <%ResultSet resultSet = null;%>
 <html>
     <head>
         <meta charset="utf-8">
 	    <meta http-equiv="X-UA-Compatible" content="IE=edge">
     	<meta name="viewport" content="width=device-width, initial-scale=1">
-		<title>This Month</title>
+		<title>This Month Supplier Orders</title>
 		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
 		<link href='https://fonts.googleapis.com/css?family=Source+Sans+Pro:700, 600,500,400,300' rel='stylesheet' type='text/css'>
 		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
@@ -150,7 +152,7 @@
                                 <a class="nav-link" href="thisMonthSUpplierOrders.jsp">This Month <span class="sr-only">(current)</span></a>
                               </li>
 							<li class="nav-item">
-							  <a class="nav-link" href="reports.jsp">Reports</a>
+							  <a class="nav-link" href="supplierOrdersReports.jsp">Reports</a>
 							</li>
 
                                     
@@ -202,7 +204,7 @@
                                         <td><%=resultSet.getString("itemID") %></td>
                                         <td><%=resultSet.getString("itemName") %></td>
                                         <td><%=resultSet.getInt("NOSunits") %></td>
-                                        <td><%=resultSet.getDate("arrivingDate") %></td>
+                                        <td style="background:#9B59B6"><%=resultSet.getDate("arrivingDate") %></td>
                                         <td><%=resultSet.getFloat("unitPrice") %><td>
                                         <td><%=resultSet.getFloat("totalPrice") %></td>
                                         
@@ -220,57 +222,7 @@
 									</tbody>
 								  </table>
 
-                            <h2 class="headings"> Delayed Orders </h2>
-
-                            <div class="addform" >
-                                    <table class="table table-dark">
-                                            <thead>
-                                              <tr>
-                                                <th scope="col">Order ID</th>
-                                                <th scope="col">Order Date</th>
-                                                <th scope="col" style="width: 200px">Supplier Name</th>
-                                                <th scope="col">Item Name</th>
-                                                <th scope="col">No.of Units</th>
-                                                <th scope="col"  style="width: 200">Scheduled Arriving Date</th>
-                                                <th scope="col">No.of delayed days</th>
-                                              </tr>
-                                            </thead>
-                                            
-                                            <%
-										try{
-										Class.forName("com.mysql.jdbc.Driver");
-								        Connection connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/pharmacy?useSSL=false","root","sliit@123");
-								        
-								        Statement statement = connection.createStatement();
-								        
-								        java.sql.Date cDate = (java.sql.Date) new java.util.Date();
-								        
-										String sql ="SELECT * FROM supplierorders WHERE status = 'not arrived' AND arrivingDate <" +cDate;
-								
-										resultSet = statement.executeQuery(sql);
-										while(resultSet.next()){
-										%>
-                                            <tbody>
-                                              <tr>
-                                                <th scope="row"><%=resultSet.getString("sOrderID") %></th>
-                                        <td><%=resultSet.getDate("sOrderDate") %></td>
-                                        <td><%=resultSet.getString("supplierName") %></td>
-                                        <td><%=resultSet.getString("itemName") %></td>
-                                        <td><%=resultSet.getInt("NOSunits") %></td>
-                                        <td><%=resultSet.getDate("arrivingDate") %></td>
-                                        <td><%=resultSet.getFloat("unitPrice") %><td>
-
-                                            </tbody>
-                              			<% 
-									}
-							
-									} catch (Exception e) {
-									out.println(e);
-									}
-									
-									
-									%>
-                                    </table>
+                           
                                 </div>
 
     

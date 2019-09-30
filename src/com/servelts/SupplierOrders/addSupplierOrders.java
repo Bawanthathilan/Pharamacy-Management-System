@@ -12,7 +12,7 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.sql.Date;
 
-  
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException; 
 import javax.servlet.annotation.WebServlet; 
 import javax.servlet.http.HttpServlet; 
@@ -67,10 +67,12 @@ public class addSupplierOrders extends HttpServlet {
 	    			out.println("<script src='https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js'></script>");
 	    			out.println("<script>");
 	    			out.println("$(document).ready(function(){");
-	    			out.println("swal ( 'Supplier Added Successfully' ,  '' ,  'success' );");
+	    			out.println("swal ( 'Supplier Order Added Successfully' ,  '' ,  'success' );");
 	    			out.println("});");
 	    			out.println("</script>"); 
-	        		response.sendRedirect("viewSupplierOrders.jsp");
+	    			
+	    			RequestDispatcher rd = request.getRequestDispatcher("viewSupplierOrders.jsp");
+	    			rd.include(request, response);
 	    			
                 }
     		} catch (Exception e) {
